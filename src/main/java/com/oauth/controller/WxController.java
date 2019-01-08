@@ -1,13 +1,16 @@
 package com.oauth.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Enumeration;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +21,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
+import com.oauth.constant.Constants;
+import com.oauth.entity.OrderInfo;
+import com.oauth.service.OrderInfoService;
 import com.oauth.utils.NetUtil;
 import com.oauth.utils.Oauth2Token;
 import com.oauth.utils.SNSUserInfo;
@@ -30,12 +36,55 @@ import com.oauth.vo.R;
  * @Date:Created in 2019/1/4 10:27.
  */
 @RestController
-@EnableAutoConfiguration
 public class WxController {
 
+    @Autowired
+    private OrderInfoService orderInfoService;
+
+    @RequestMapping("/")
+    public void root(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        response.sendRedirect("http://jesus.ngrok.xiaomiqiu.cn/MP_verify_IQ071dRr6uE19t50.txt\"");
+    }
+
     @RequestMapping("/hello")
-    String home() {
+    public String home(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        System.out.println("========WechatController========= ");
+
+        Enumeration pNames = request.getParameterNames();
+        while (pNames.hasMoreElements()) {
+            String name = (String) pNames.nextElement();
+            String value = request.getParameter(name);
+            // out.print(name + "=" + value);
+
+            String log = "name =" + name + "     value =" + value;
+        }
+
+        String signature = request.getParameter("signature");/// 微信加密签名
+        String timestamp = request.getParameter("timestamp");/// 时间戳
+        String nonce = request.getParameter("nonce"); /// 随机数
+        String echostr = request.getParameter("echostr"); // 随机字符串
+        PrintWriter out = response.getWriter();
+
+        out.print(echostr);
+        out.close();
+        out = null;
+
         return "Hello World!";
+    }
+
+    /**
+     *
+     * @return
+     */
+    @RequestMapping("/getList")
+    public String getList(){
+
+        List<OrderInfo> orderInfos = orderInfoService.selectByEntity();
+
+
+        return orderInfos.toString();
     }
 
 
@@ -54,9 +103,9 @@ public class WxController {
     @RequestMapping("/authorize")
     @ResponseBody
     public static R authorize() {
-        String appid = "wxda4d185c2ed08ce4";
+        String appid = Constants.APPID;
         //String uri ="wftest.zzff.net/wx/weixinLogin";
-        String uri = urlEncodeUTF8("wftest.zzff.net/api/wx/weixinLogin");
+        String uri = urlEncodeUTF8("jesus.ngrok.xiaomiqiu.cn/weixinLogin");
         String result = "";
         BufferedReader in = null;
         try {
@@ -120,7 +169,7 @@ public class WxController {
         // 用户同意授权
         if (!"authdeny".equals(code)) {
             // 获取网页授权access_token
-            Oauth2Token oauth2Token = getOauth2AccessToken("wxda4d185c2ed08ce4", "b882a349a7c0e1252d47771a5f54ede8", code);
+            Oauth2Token oauth2Token = getOauth2AccessToken(Constants.APPID, Constants.APPSERECT, code);
             System.out.println("***********************************oauth2Token信息："+oauth2Token.toString());
             // 网页授权接口访问凭证
             String accessToken = oauth2Token.getAccessToken();
@@ -128,6 +177,8 @@ public class WxController {
             String openId = oauth2Token.getOpenId();
             // 获取用户信息
             SNSUserInfo snsUserInfo = getSNSUserInfo(accessToken, openId);
+            System.out.println("openid:"+openId);
+            System.out.println("accessToken:"+accessToken);
             System.out.println("***********************************用户信息unionId："+snsUserInfo.getUnionid()+"***:"+snsUserInfo.getNickname());
             // 设置要传递的参数
 
@@ -142,6 +193,35 @@ public class WxController {
         }
     }
 
+    /**
+     * 群发消息接口
+     */
+    @RequestMapping("/weixinLogin")
+    @ResponseBody
+    public void sendMessage(HttpServletRequest request,HttpServletResponse response,String access_token) throws Exception {
+
+        // 获取网页授权access_token
+
+        // 设置要传递的参数
+        String param = "{\n" +
+                "   \"touser\":[\n" +
+                "    \"OPENID1\",\n" +
+                "    \"OPENID2\"\n" +
+                "   ],\n" +
+                "    \"msgtype\": \"text\",\n" +
+                "    \"text\": { \"content\": \"hello from boxer.\"}\n" +
+                "}";
+        //具体业务start
+
+        //具体业务end
+
+        String url = "https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=ACCESS_TOKEN";
+        url.replace("ACCESS_TOKEN",access_token);
+        param.replace("OPENID1","olyFc1CdGLBWWkhkfZoevCnWM1Hc");
+        param.replace("OPENID2","olyFc1CdGLBWWkhkfZoevCnWM1Hc");
+        response.sendRedirect(url);
+    }
+
 
     /**
      * 获取网页授权凭证
@@ -153,7 +233,7 @@ public class WxController {
      */
     public static Oauth2Token getOauth2AccessToken(String appId, String appSecret, String code) {
         Oauth2Token wat = null;
-        appSecret = "b882a349a7c0e1252d47771a5f54ede8";
+//        appSecret = Constants.APPSERECT;
         // 拼接请求地址
         String requestUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
         requestUrl = requestUrl.replace("APPID", appId);

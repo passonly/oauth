@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.oauth.dao.OrderInfoMapper">
+    <!--<resultMap id="selectAll" type="com.oauth.entity.OrderInfo">-->
+        <!--<result property="order_id" column="orderId"></result>-->
+        <!--<result property="order_umber" column="orderNumber" ></result>-->
+        <!--<result property="order_sercet" column="orderSercet" ></result>-->
+        <!--<result property="order_status" column="orderStatus" ></result>-->
+        <!--<result property="order_can_send" column="orderCanSend" ></result>-->
+        <!--<result property="order_is_send" column="orderIsSend" ></result>-->
+        <!--<result property="order_customer" column="orderCustomer" ></result>-->
+        <!--<result property="create_time" column="createTime" ></result>-->
+        <!--<result property="create_person" column="createPerson" ></result>-->
+        <!--<result property="update_time" column="updateTime" ></result>-->
+        <!--<result property="update_person" column="updatePerson" ></result>-->
+    <!--</resultMap>-->
+
+    <select id="selectByEntity" resultType="com.oauth.entity.OrderInfo">
+        select * from orderinfo
+    </select>
+
+    <select id="selectAll" resultType="com.oauth.entity.OrderInfo">
+        select * from orderinfo
+    </select>
+
+</mapper>
