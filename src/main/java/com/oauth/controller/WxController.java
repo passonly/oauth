@@ -1,5 +1,6 @@
 package com.oauth.controller;
 
+import com.oauth.utils.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +46,16 @@ public class WxController {
     public void root(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         response.sendRedirect("http://jesus.ngrok.xiaomiqiu.cn/MP_verify_IQ071dRr6uE19t50.txt\"");
+    }
+
+    @RequestMapping("/getAccessToken")
+    public void getAccessToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+        url = url.replace("APPID",Constants.APPID).replace("APPSECRET",Constants.APPSERECT);
+        String s = HttpUtil.doGet(url);
+        System.out.println(s);
+//        response.sendRedirect(url);
     }
 
     @RequestMapping("/hello")
@@ -196,12 +207,12 @@ public class WxController {
     /**
      * 群发消息接口
      */
-    @RequestMapping("/weixinLogin")
+    @RequestMapping("/sendMessage")
     @ResponseBody
     public void sendMessage(HttpServletRequest request,HttpServletResponse response,String access_token) throws Exception {
 
         // 获取网页授权access_token
-
+        access_token = "17_oRNq0UtVSWEZVL4itU_7hgmwIEGAbjlCKSEhy8DV8MV1xbiPDYGyUNKZdZaAgpq2hPRLl83qZ81ftd8suNtxrPeZscAWMqvVRDmzA9p4EkjrB_24kaUi0Uslv4RsEznbFIlRFGI8x-mwkKKFPPEfAIABBQ";
         // 设置要传递的参数
         String param = "{\n" +
                 "   \"touser\":[\n" +
@@ -219,6 +230,8 @@ public class WxController {
         url.replace("ACCESS_TOKEN",access_token);
         param.replace("OPENID1","olyFc1CdGLBWWkhkfZoevCnWM1Hc");
         param.replace("OPENID2","olyFc1CdGLBWWkhkfZoevCnWM1Hc");
+        String s = HttpUtil.doPost(url, param);
+        System.out.println(s);
         response.sendRedirect(url);
     }
 

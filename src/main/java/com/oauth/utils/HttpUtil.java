@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.util.Date;
 
 //Http请求的工具类
 public class HttpUtil {
@@ -87,24 +89,33 @@ public class HttpUtil {
         {
             url = new URL(urlStr);
             conn = (HttpURLConnection) url.openConnection();
-            conn.setReadTimeout(TIMEOUT_IN_MILLIONS);
-            conn.setConnectTimeout(TIMEOUT_IN_MILLIONS);
-            conn.setRequestMethod("GET");
             conn.setRequestProperty("accept", "*/*");
             conn.setRequestProperty("connection", "Keep-Alive");
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Content-Type",
+                    "application/x-www-form-urlencoded");
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setUseCaches(false);
+            // 发送POST请求必须设置如下两行
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            conn.setReadTimeout(TIMEOUT_IN_MILLIONS);
+            conn.setConnectTimeout(TIMEOUT_IN_MILLIONS);
             if (conn.getResponseCode() == 200)
             {
                 is = conn.getInputStream();
                 baos = new ByteArrayOutputStream();
                 int len = -1;
-                byte[] buf = new byte[128];
-
+                byte[] buf = new byte[1024];
+                StringBuilder sb = new StringBuilder();
                 while ((len = is.read(buf)) != -1)
                 {
+                    sb.append(new String(buf,0,len));
                     baos.write(buf, 0, len);
                 }
-                baos.flush();
-                return baos.toString();
+                System.out.println(sb.toString()+"++++++++++++++");
+                System.out.println(baos.toString()+"++++++++++++++++++++");
+                return sb.toString();
             } else
             {
                 throw new RuntimeException(" responseCode is not 200 ... ");
@@ -113,24 +124,25 @@ public class HttpUtil {
         } catch (Exception e)
         {
             e.printStackTrace();
-        } finally
-        {
-            try
-            {
-                if (is != null)
-                    is.close();
-            } catch (IOException e)
-            {
-            }
-            try
-            {
-                if (baos != null)
-                    baos.close();
-            } catch (IOException e)
-            {
-            }
-            conn.disconnect();
         }
+//        finally
+//        {
+//            try
+//            {
+//                if (is != null)
+//                    is.close();
+//            } catch (IOException e)
+//            {
+//            }
+//            try
+//            {
+//                if (baos != null)
+//                    baos.close();
+//            } catch (IOException e)
+//            {
+//            }
+//            conn.disconnect();
+//        }
 
         return null ;
 
