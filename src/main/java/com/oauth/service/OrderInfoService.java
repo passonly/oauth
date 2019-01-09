@@ -12,4 +12,6 @@ import java.util.List;
 public interface OrderInfoService {
 
     List<OrderInfo> selectByEntity();
+
+    void insertOrder(OrderInfo orderInfo);
 }

@@ -19,5 +19,7 @@ public interface OrderInfoMapper {
 //    @Select("select * from orderinfo")
     List<OrderInfo> selectByEntity();
 
-    void update();
+    void update(OrderInfo orderInfo);
+
+    void insertOrder(OrderInfo orderInfo);
 }

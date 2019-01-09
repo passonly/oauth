@@ -24,4 +24,113 @@
         select * from orderinfo
     </select>
 
+
+    <!--<select id="get" resultType="com.oauth.entity.OrderInfo">-->
+        <!--select * from orderinfo where id = #{value}-->
+    <!--</select>-->
+
+    <!--<select id="list" resultType="com.oauth.entity.OrderInfo">-->
+        <!--select-->
+        <!--`id`,`title`,`content`,`price`,`create_time`,`start_time`,`end_time`,`author`,`thumb`,`is_recommend`,`cat_id`,`banner`,`place`-->
+        <!--from activity-->
+        <!--<where>-->
+            <!--<if test="id != null and id != ''">and id = #{id}</if>-->
+            <!--<if test="title != null and title != ''">and title = #{title}</if>-->
+            <!--<if test="content != null and content != ''">and content = #{content}</if>-->
+            <!--<if test="price != null and price != ''">and price = #{price}</if>-->
+            <!--<if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>-->
+            <!--<if test="startTime != null and startTime != ''">and start_time = #{startTime}</if>-->
+            <!--<if test="endTime != null and endTime != ''">and end_time = #{endTime}</if>-->
+            <!--<if test="author != null and author != ''">and author = #{author}</if>-->
+            <!--<if test="thumb != null and thumb != ''">and thumb = #{thumb}</if>-->
+            <!--<if test="isRecommend != null and isRecommend != ''">and is_recommend = #{isRecommend}</if>-->
+            <!--<if test="catId != null and catId != ''">and cat_id = #{catId}</if>-->
+            <!--<if test="banner != null and banner != ''">and banner = #{banner}</if>-->
+            <!--<if test="place != null and place != ''">and place = #{place}</if>-->
+        <!--</where>-->
+        <!--<choose>-->
+            <!--<when test="sort != null and sort.trim() != ''">-->
+                <!--order by ${sort} ${order}-->
+            <!--</when>-->
+            <!--<otherwise>-->
+                <!--order by id desc-->
+            <!--</otherwise>-->
+        <!--</choose>-->
+        <!--<if test="offset != null and limit != null">-->
+            <!--limit #{offset}, #{limit}-->
+        <!--</if>-->
+    <!--</select>-->
+
+    <!--<select id="count" resultType="int">-->
+        <!--select count(*) from activity-->
+        <!--<where>-->
+            <!--<if test="id != null and id != ''">and id = #{id}</if>-->
+            <!--<if test="title != null and title != ''">and title = #{title}</if>-->
+            <!--<if test="content != null and content != ''">and content = #{content}</if>-->
+            <!--<if test="price != null and price != ''">and price = #{price}</if>-->
+            <!--<if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>-->
+            <!--<if test="startTime != null and startTime != ''">and start_time = #{startTime}</if>-->
+            <!--<if test="endTime != null and endTime != ''">and end_time = #{endTime}</if>-->
+            <!--<if test="author != null and author != ''">and author = #{author}</if>-->
+            <!--<if test="thumb != null and thumb != ''">and thumb = #{thumb}</if>-->
+            <!--<if test="isRecommend != null and isRecommend != ''">and is_recommend = #{isRecommend}</if>-->
+            <!--<if test="catId != null and catId != ''">and cat_id = #{catId}</if>-->
+            <!--<if test="banner != null and banner != ''">and banner = #{banner}</if>-->
+            <!--<if test="place != null and place != ''">and place = #{place}</if>-->
+        <!--</where>-->
+    <!--</select>-->
+
+    <!--<insert id="insertOrder" parameterType="app.qinda.entry.activity.Activity" useGeneratedKeys="true" keyProperty="id">-->
+        <!--insert into activity-->
+        <!--(-->
+        <!--`title`,-->
+        <!--`content`,-->
+        <!--`price`,-->
+        <!--`create_time`,-->
+        <!--`start_time`,-->
+        <!--`end_time`,-->
+        <!--`author`,-->
+        <!--`thumb`,-->
+        <!--`is_recommend`,-->
+        <!--`cat_id`,-->
+        <!--`banner`,-->
+        <!--`place`-->
+        <!--)-->
+        <!--values-->
+        <!--(-->
+        <!--#{title},-->
+        <!--#{content},-->
+        <!--#{price},-->
+        <!--#{createTime},-->
+        <!--#{startTime},-->
+        <!--#{endTime},-->
+        <!--#{author},-->
+        <!--#{thumb},-->
+        <!--#{isRecommend},-->
+        <!--#{catId},-->
+        <!--#{banner},-->
+        <!--#{place}-->
+        <!--)-->
+    <!--</insert>-->
+
+    <!--<update id="update" parameterType="app.qinda.entry.activity.Activity">-->
+        <!--update activity-->
+        <!--<set>-->
+            <!--<if test="title != null">`title` = #{title},</if>-->
+            <!--<if test="content != null">`content` = #{content},</if>-->
+            <!--<if test="price != null">`price` = #{price},</if>-->
+            <!--<if test="createTime != null">`create_time` = #{createTime},</if>-->
+            <!--<if test="startTime != null">`start_time` = #{startTime},</if>-->
+            <!--<if test="endTime != null">`end_time` = #{endTime},</if>-->
+            <!--<if test="author != null">`author` = #{author},</if>-->
+            <!--<if test="thumb != null">`thumb` = #{thumb},</if>-->
+            <!--<if test="isRecommend != null">`is_recommend` = #{isRecommend},</if>-->
+            <!--<if test="catId != null">`cat_id` = #{catId},</if>-->
+            <!--<if test="banner != null">`banner` = #{banner},</if>-->
+            <!--<if test="place != null">`place` = #{place}</if>-->
+        <!--</set>-->
+        <!--where id = #{id}-->
+    <!--</update>-->
+
+
 </mapper>

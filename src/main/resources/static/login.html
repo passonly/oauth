@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>登陆</title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<style>
+		main{
+			padding-top:100px;
+		}
+		.page{
+			height:34px;
+			text-align: center;
+			margin:30px 0;
+		}
+		nav{
+			display: inline-block;
+		}
+		.pagination{
+			float:left;
+			margin:0;
+		}
+		.pagination li.elip a{
+			background:none;
+			border:none;
+			cursor:default;
+			outline: none;
+		}
+		.goto{
+			margin-left:20px;
+			float:left;
+			vertical-align: middle;
+			color:#999;
+			display: inline-block;
+		}
+		.goto input{
+			width:34px;
+			height:34px;
+			padding:0 3px;
+			border: 1px solid #ccc;
+		}
+		.goto .btn{
+			margin-left:20px;
+		}
+		@media (max-width:768px){
+			.page{
+				display: none;
+			}
+		}
+	</style>
+</head>
+<body>
+
+
+	<main>
+		<div class='container'>
+			<form class="form-horizontal">
+			  <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">订单号</label>
+			    <div class="col-sm-10">
+			      <input type="email" class="form-control" id="inputEmail3" placeholder="订单号">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">订单密码</label>
+			    <div class="col-sm-10">
+			      <input type="password" class="form-control" id="inputPassword3" placeholder="订单密码">
+			    </div>
+			  </div>
+			 
+			  <div class="form-group">
+			    <div class="col-sm-offset-2 col-sm-10">
+			      <button type="submit" class="btn btn-primary">提交</button>
+			    </div>
+			  </div>
+			</form>
+
+			<div class='page'>
+				<nav aria-label="Page navigation">
+				  <ul class="pagination">
+				    <li class="disabled">
+				      <a href="#" aria-label="Previous">
+				        <span aria-hidden="true">上一页</span>
+				      </a>
+				    </li>
+				    <li class="active"><a href="#">1</a></li>
+				    <li><a href="#">2</a></li>
+				    <li><a href="#">3</a></li>
+				    <li><a href="#">4</a></li>
+				    <li class='elip'><a href="javascript:void(0)">...</a></li>
+				    <li><a href="#">5</a></li>
+				    <li>
+				      <a href="#" aria-label="Next">
+				        <span aria-hidden="true">下一页</span>
+				      </a>
+				    </li>
+				  </ul>
+
+				  <div class='goto'>
+				  	共265页，到第 <input type="text"> 页  <button type="button" class="btn btn-default">确定</button>
+				  </div>
+				</nav>
+			</div>
+
+		</div>	
+	</main>
+
+	<!-- <script src="js/jquery-1.11.3.min.js"></script> 
+	<script src="js/bootstrap.min.js"></script> -->
+
+</body>
+</html>

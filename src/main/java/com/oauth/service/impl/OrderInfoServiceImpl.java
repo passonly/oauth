@@ -25,4 +25,9 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     public List<OrderInfo> selectByEntity() {
         return orderInfoMapper.selectByEntity();
     }
+
+    @Override
+    public void insertOrder(OrderInfo orderInfo) {
+        orderInfoMapper.insertOrder(orderInfo);
+    }
 }

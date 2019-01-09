@@ -16,6 +16,8 @@ import java.util.Formatter;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -28,6 +30,7 @@ import com.oauth.service.OrderInfoService;
 import com.oauth.utils.NetUtil;
 import com.oauth.utils.Oauth2Token;
 import com.oauth.utils.SNSUserInfo;
+import com.oauth.utils.WXUtil;
 import com.oauth.vo.R;
 
 
@@ -49,13 +52,19 @@ public class WxController {
     }
 
     @RequestMapping("/getAccessToken")
-    public void getAccessToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String getAccessToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
-        url = url.replace("APPID",Constants.APPID).replace("APPSECRET",Constants.APPSERECT);
-        String s = HttpUtil.doGet(url);
-        System.out.println(s);
-//        response.sendRedirect(url);
+        String access_token = null;
+        //从cookie中获取access_token
+        access_token = WXUtil.getAccessTokenFromCookie(request,response);
+        //如果cookie中没有，则重新获取access_token，并存入cookie
+        if (access_token == null || "".equals(access_token)){
+            access_token = WXUtil.getAccessToken();
+            Cookie cookie = new Cookie("access_token",access_token);
+            cookie.setMaxAge(7200);
+            response.addCookie(cookie);
+        }
+        return access_token;
     }
 
     @RequestMapping("/hello")
@@ -85,18 +94,6 @@ public class WxController {
         return "Hello World!";
     }
 
-    /**
-     *
-     * @return
-     */
-    @RequestMapping("/getList")
-    public String getList(){
-
-        List<OrderInfo> orderInfos = orderInfoService.selectByEntity();
-
-
-        return orderInfos.toString();
-    }
 
 
     private static  Logger log = LoggerFactory.getLogger(WxController.class);
