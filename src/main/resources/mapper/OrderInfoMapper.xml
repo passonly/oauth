@@ -5,19 +5,19 @@
 
     <select id="selectByEntity" resultType="com.oauth.entity.OrderInfo">
         select * from orderinfo
-        <!--<where>-->
-            <!--<if test=" orderId !=null and orderId !='' ">AND order_id =#{ orderId }</if>-->
-            <!--<if test=" orderNumber !=null and orderNumber !='' ">AND order_number =#{ orderNumber }</if>-->
-            <!--<if test=" orderSercet !=null and orderSercet !='' ">AND order_sercet =#{ orderSercet }</if>-->
-            <!--<if test=" orderStatus !=null and orderStatus !='' ">AND order_status =#{ orderStatus }</if>-->
-            <!--<if test=" orderCanSend !=null and orderCanSend !='' ">AND order_can_send =#{ orderCanSend }</if>-->
-            <!--<if test=" orderIsSend !=null and orderIsSend !='' ">AND order_is_send =#{ orderIsSend }</if>-->
-            <!--<if test=" orderCustomer !=null and orderCustomer !='' ">AND order_customer =#{ orderCustomer }</if>-->
-            <!--<if test=" createTime !=null and createTime !='' ">AND create_time =#{ createTime }</if>-->
-            <!--<if test=" createPerson !=null and createPerson !='' ">AND create_person =#{ createPerson }</if>-->
-            <!--<if test=" updateTime !=null and updateTime !='' ">AND update_time =#{ updateTime }</if>-->
-            <!--<if test=" updatePerson !=null and updatePerson !='' ">AND update_person =#{ updatePerson }</if>-->
-        <!--</where>-->
+        <where>
+            <if test=" orderId !=null and orderId !='' ">AND order_id =#{ orderId }</if>
+            <if test=" orderNumber !=null and orderNumber !='' ">AND order_number =#{ orderNumber }</if>
+            <if test=" orderSercet !=null and orderSercet !='' ">AND order_sercet =#{ orderSercet }</if>
+            <if test=" orderStatus !=null and orderStatus !='' ">AND order_status =#{ orderStatus }</if>
+            <if test=" orderCanSend !=null and orderCanSend !='' ">AND order_can_send =#{ orderCanSend }</if>
+            <if test=" orderIsSend !=null and orderIsSend !='' ">AND order_is_send =#{ orderIsSend }</if>
+            <if test=" orderCustomer !=null and orderCustomer !='' ">AND order_customer =#{ orderCustomer }</if>
+            <if test=" createTime !=null and createTime !='' ">AND create_time =#{ createTime }</if>
+            <if test=" createPerson !=null and createPerson !='' ">AND create_person =#{ createPerson }</if>
+            <if test=" updateTime !=null and updateTime !='' ">AND update_time =#{ updateTime }</if>
+            <if test=" updatePerson !=null and updatePerson !='' ">AND update_person =#{ updatePerson }</if>
+        </where>
     </select>
 
     <select id="count" resultType="int">

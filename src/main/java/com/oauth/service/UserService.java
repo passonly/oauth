@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface UserService {
 
-    List<User> selectByEntity(int currentPage, int pageSize);
+    List<User> selectByEntity(int currentPage, int pageSize,User user);
 
     void insert(User user);
 

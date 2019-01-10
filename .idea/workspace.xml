@@ -2,32 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4594fa94-0ac3-491a-a4f8-f88a8c2b447e" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/controller/UserController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/dao/UserMapper.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/entity/User.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/UserService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/UserServiceImpl.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_2_3_3.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_boot_starter_unknown.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_core_2_3_3.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_generate_2_3_3.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_baomidou_mybatis_plus_support_2_3_3.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/oauth.iml" afterPath="$PROJECT_DIR$/oauth.iml" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/controller/MessageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/controller/MessageController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/controller/OrderInfoController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/controller/OrderInfoController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/dao/OrderInfoMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/dao/OrderInfoMapper.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/entity/Button.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/entity/Button.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/entity/SubButton.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/entity/SubButton.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/service/OrderInfoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/OrderInfoService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/OrderInfoServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/OrderInfoServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/test/Genrator.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/test/MyBatisGeneratorUtil.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/controller/UserController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/dao/UserMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/dao/UserMapper.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/UserService.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/UserServiceImpl.java" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/OrderInfoMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/OrderInfoMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mp/MP_verify_IQ071dRr6uE19t50.txt" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -40,11 +20,65 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Application.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Application.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
+            <state relative-caret-position="418">
               <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/controller/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="372">
+              <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1551#1552#0" expanded="true" />
+                <element signature="e#1591#1592#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/service/UserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="201">
+              <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/service/impl/UserServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1203#1204#0" expanded="true" />
+                <element signature="e#1242#1243#0" expanded="true" />
+                <element signature="e#1279#1280#0" expanded="true" />
+                <element signature="e#1330#1331#0" expanded="true" />
+                <element signature="e#1379#1380#0" expanded="true" />
+                <element signature="e#1435#1436#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/dao/UserMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="201">
+              <caret line="18" column="39" lean-forward="false" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -53,8 +87,8 @@
       <file leaf-file-name="UserMapper.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="3" column="36" lean-forward="false" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+            <state relative-caret-position="638">
+              <caret line="29" column="71" lean-forward="false" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="71" />
               <folding>
                 <marker date="1547119964583" expanded="true" signature="1069:1089" ph="select * fro... user" />
                 <marker date="1547119964583" expanded="true" signature="2907:2934" ph="select count... user" />
@@ -68,14 +102,14 @@
       <file leaf-file-name="OrderInfoMapper.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/OrderInfoMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            <state relative-caret-position="154">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="19" selection-end-column="16" />
               <folding>
-                <marker date="1547119333528" expanded="true" signature="293:316" ph="select * fro... orderinfo" />
-                <marker date="1547119333528" expanded="true" signature="293:325" ph="select * fro... orderinfo" />
-                <marker date="1547119333528" expanded="true" signature="1658:1688" ph="select * fro... orderinfo" />
-                <marker date="1547119333528" expanded="true" signature="1823:1910" ph="select from t_user_invite_rank" />
-                <marker date="1547119333528" expanded="true" signature="4803:5464" ph="update huishanghe.orderinfo... " />
+                <marker date="1547120256229" expanded="true" signature="293:316" ph="select * fro... orderinfo" />
+                <marker date="1547120256229" expanded="true" signature="293:325" ph="select * fro... orderinfo" />
+                <marker date="1547120256229" expanded="true" signature="1567:1597" ph="select * fro... orderinfo" />
+                <marker date="1547120256229" expanded="true" signature="1732:1819" ph="select from t_user_invite_rank" />
+                <marker date="1547120256229" expanded="true" signature="4712:5373" ph="update huishanghe.orderinfo... " />
               </folding>
             </state>
           </provider>
@@ -166,18 +200,18 @@
         <option value="$PROJECT_DIR$/src/main/java/com/oauth/entity/SubButton.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/oauth/test/Genrator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/oauth/entity/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oauth/dao/UserMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/oauth/service/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oauth/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/oauth/controller/OrderInfoController.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/oauth/controller/MessageController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/OrderInfoMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/OrderInfoServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oauth/controller/UserController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/oauth/Application.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oauth/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oauth/dao/UserMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/OrderInfoMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/oauth/controller/UserController.java" />
       </list>
     </option>
   </component>
@@ -580,7 +614,7 @@
       <updated>1546568748324</updated>
       <workItem from="1546568753350" duration="11996000" />
       <workItem from="1546910148169" duration="4247000" />
-      <workItem from="1546922479636" duration="59426000" />
+      <workItem from="1546922479636" duration="60414000" />
     </task>
     <task id="LOCAL-00001" summary="0108">
       <created>1546943878358</created>
@@ -631,11 +665,18 @@
       <option name="project" value="LOCAL" />
       <updated>1547109481701</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="01103">
+      <created>1547120109532</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1547120109532</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75669000" />
+    <option name="totallyTimeSpent" value="76657000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -686,11 +727,12 @@
     <MESSAGE value="01092" />
     <MESSAGE value="01101" />
     <MESSAGE value="01102" />
-    <option name="LAST_COMMIT_MESSAGE" value="01102" />
+    <MESSAGE value="01103" />
+    <option name="LAST_COMMIT_MESSAGE" value="01103" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="25" />
+      <option name="time" value="27" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1034,16 +1076,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/service/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-166">
@@ -1067,14 +1099,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="20" column="30" lean-forward="false" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/dao/UserMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1127,61 +1151,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="34" column="50" lean-forward="true" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1470#1471#0" expanded="true" />
-            <element signature="e#1510#1511#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/service/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="23" column="23" lean-forward="false" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1189#1190#0" expanded="true" />
-            <element signature="e#1228#1229#0" expanded="true" />
-            <element signature="e#1265#1266#0" expanded="true" />
-            <element signature="e#1316#1317#0" expanded="true" />
-            <element signature="e#1365#1366#0" expanded="true" />
-            <element signature="e#1421#1422#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="36" lean-forward="false" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-          <folding>
-            <marker date="1547119964583" expanded="true" signature="1069:1089" ph="select * fro... user" />
-            <marker date="1547119964583" expanded="true" signature="2907:2934" ph="select count... user" />
-            <marker date="1547119964583" expanded="true" signature="3064:3147" ph="select * fro... user" />
-            <marker date="1547119964583" expanded="true" signature="6842:7811" ph="update huishanghe.userinfo... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/OrderInfoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <marker date="1547119333528" expanded="true" signature="293:316" ph="select * fro... orderinfo" />
-            <marker date="1547119333528" expanded="true" signature="293:325" ph="select * fro... orderinfo" />
-            <marker date="1547119333528" expanded="true" signature="1658:1688" ph="select * fro... orderinfo" />
-            <marker date="1547119333528" expanded="true" signature="1823:1910" ph="select from t_user_invite_rank" />
-            <marker date="1547119333528" expanded="true" signature="4803:5464" ph="update huishanghe.orderinfo... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
@@ -1192,9 +1161,82 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
+        <state relative-caret-position="418">
           <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/dao/UserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="18" column="39" lean-forward="false" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/OrderInfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="19" selection-end-column="16" />
+          <folding>
+            <marker date="1547120256229" expanded="true" signature="293:316" ph="select * fro... orderinfo" />
+            <marker date="1547120256229" expanded="true" signature="293:325" ph="select * fro... orderinfo" />
+            <marker date="1547120256229" expanded="true" signature="1567:1597" ph="select * fro... orderinfo" />
+            <marker date="1547120256229" expanded="true" signature="1732:1819" ph="select from t_user_invite_rank" />
+            <marker date="1547120256229" expanded="true" signature="4712:5373" ph="update huishanghe.orderinfo... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="29" column="71" lean-forward="false" selection-start-line="29" selection-start-column="62" selection-end-line="29" selection-end-column="71" />
+          <folding>
+            <marker date="1547119964583" expanded="true" signature="1069:1089" ph="select * fro... user" />
+            <marker date="1547119964583" expanded="true" signature="2907:2934" ph="select count... user" />
+            <marker date="1547119964583" expanded="true" signature="3064:3147" ph="select * fro... user" />
+            <marker date="1547119964583" expanded="true" signature="6842:7811" ph="update huishanghe.userinfo... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/service/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1203#1204#0" expanded="true" />
+            <element signature="e#1242#1243#0" expanded="true" />
+            <element signature="e#1279#1280#0" expanded="true" />
+            <element signature="e#1330#1331#0" expanded="true" />
+            <element signature="e#1379#1380#0" expanded="true" />
+            <element signature="e#1435#1436#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/oauth/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1551#1552#0" expanded="true" />
+            <element signature="e#1591#1592#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

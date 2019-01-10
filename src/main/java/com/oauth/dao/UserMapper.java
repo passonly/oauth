@@ -16,7 +16,7 @@ import java.util.List;
 public interface UserMapper {
 
 //    @Select("select * from orderinfo")
-    List<User> selectByEntity();
+    List<User> selectByEntity(User user);
 
     void updateByPrimaryKey(User user);
 
