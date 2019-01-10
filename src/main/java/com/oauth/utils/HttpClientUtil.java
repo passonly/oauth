@@ -238,7 +238,7 @@ public class HttpClientUtil {
                 sb.append(lines);
             }
             reader.close();
-            return "success";
+            return sb.toString();
         } catch (Exception e) {
             throw new Exception("执行HttpClient发生异常");
         }

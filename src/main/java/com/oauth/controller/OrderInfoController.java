@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Author: likun.
@@ -26,9 +28,9 @@ public class OrderInfoController {
      * @return
      */
     @RequestMapping("/getList")
-    public String getList(){
-        List<OrderInfo> orderInfos = orderInfoService.selectByEntity();
-        return orderInfos.toString();
+    public List<OrderInfo> getList(int currentPage,int pageSize){
+        List<OrderInfo> orderInfos = orderInfoService.selectByEntity(currentPage, pageSize);
+        return orderInfos;
     }
 
     /**
@@ -37,8 +39,8 @@ public class OrderInfoController {
      */
     @RequestMapping("/insertOrder")
     public void insertOrder(OrderInfo orderInfo){
-
-
+        orderInfo.setOrderId(UUID.randomUUID().toString());
+        orderInfo.setCreateTime(new Date());
         orderInfoService.insertOrder(orderInfo);
     }
 

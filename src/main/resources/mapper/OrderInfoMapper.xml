@@ -20,8 +20,15 @@
         select * from orderinfo
     </select>
 
-    <select id="selectAll" resultType="com.oauth.entity.OrderInfo">
-        select * from orderinfo
+    <select id="count" resultType="int">
+        select count(*) from orderinfo
+    </select>
+
+    <select id="selectByPrimaryKey"  parameterType="java.lang.String" >
+        select
+        *
+        from t_user_invite_rank
+        where id = #{id,jdbcType=INTEGER}
     </select>
 
 

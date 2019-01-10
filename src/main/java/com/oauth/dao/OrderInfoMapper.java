@@ -22,4 +22,8 @@ public interface OrderInfoMapper {
     void update(OrderInfo orderInfo);
 
     void insertOrder(OrderInfo orderInfo);
+
+    int count();
+
+    OrderInfo selectByPrimaryKey(String id);
 }

@@ -1,7 +1,9 @@
 package com.oauth.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.oauth.dao.OrderInfoMapper;
 import com.oauth.entity.OrderInfo;
+import com.oauth.entity.PageBean;
 import com.oauth.service.OrderInfoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,19 @@ public class OrderInfoServiceImpl implements OrderInfoService {
     private OrderInfoMapper orderInfoMapper;
 
     @Override
-    public List<OrderInfo> selectByEntity() {
-        return orderInfoMapper.selectByEntity();
+    public List<OrderInfo> selectByEntity(int currentPage, int pageSize) {
+
+        //设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】
+        PageHelper.startPage(currentPage, pageSize);
+
+        List<OrderInfo> allItems = orderInfoMapper.selectByEntity();        //全部商品
+        int countNums = orderInfoMapper.count();            //总记录数
+        PageBean<OrderInfo> pageData = new PageBean<>(currentPage, pageSize, countNums);
+        pageData.setItems(allItems);
+        return pageData.getItems();
+
+
+//        return orderInfoMapper.selectByEntity();
     }
 
     @Override

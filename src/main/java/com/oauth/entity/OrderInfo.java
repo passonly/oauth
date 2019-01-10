@@ -13,8 +13,8 @@ public class OrderInfo {
     private String orderNumber;
     private String orderSercet;
     private String orderStatus;
-    private String orderCanSend;
-    private String orderIsSend;
+    private String orderCanSend;//待发货
+    private String orderIsSend; //已发货
     private String orderCustomer;
     private Date   createTime;
     private String createPerson;
