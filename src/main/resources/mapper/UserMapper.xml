@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.oauth.dao.UserMapper">
+
+
+    <!--`user_id`,               userId-->
+    <!--`user_openid`,          userOpenid-->
+    <!--`user_name`,            userName-->
+    <!--`user_password`,        userPassword-->
+    <!--`user_nickname`,        userNickName-->
+    <!--`user_sex`,             userSex-->
+    <!--`user_country`,         userCountry-->
+    <!--`user_province`,        userProvince-->
+    <!--`user_city`,            userCity-->
+    <!--`user_headImgUrl`,      userHeadImgUrl-->
+    <!--`user_role`,            userRole-->
+    <!--`user_phone`,           userPhone-->
+    <!--`user_status`,          userStatus-->
+    <!--`create_time`,          createTime-->
+    <!--`create_person`,        createPerson-->
+    <!--`update_time`,          updateTime-->
+    <!--`update_person`         updatePerson-->
+
+    <select id="selectByEntity" resultType="com.oauth.entity.User">
+        select * from `user`
+        <where>
+            <if test="userId !=null and userId !='' ">AND user_id        =#{userId}</if>
+            <if test="userOpenid !=null and userOpenid !='' ">AND user_openid    =#{userOpenid}</if>
+            <if test="userName !=null and userName !='' ">AND user_name      =#{userName}</if>
+            <if test="userPassword !=null and userPassword !='' ">AND user_password  =#{userPassword}</if>
+            <if test="userNickName !=null and userNickName !='' ">AND user_nickname  =#{userNickName}</if>
+            <if test="userSex !=null and userSex !='' ">AND user_sex       =#{userSex}</if>
+            <if test="userCountry !=null and userCountry !='' ">AND user_country   =#{userCountry}</if>
+            <if test="userProvince !=null and userProvince !='' ">AND user_province  =#{userProvince}</if>
+            <if test="userCity !=null and userCity !='' ">AND user_city      =#{userCity}</if>
+            <if test="userHeadImgUrl !=null and userHeadImgUrl !='' ">AND user_headImgUrl=#{userHeadImgUrl}</if>
+            <if test="userRole !=null and userRole !='' ">AND user_role      =#{userRole}</if>
+            <if test="userPhone !=null and userPhone !='' ">AND user_phone     =#{userPhone}</if>
+            <if test="userStatus !=null and userStatus !='' ">AND user_status    =#{userStatus}</if>
+            <if test="createTime !=null and createTime !='' ">AND create_time    =#{createTime}</if>
+            <if test="createPerson !=null and createPerson !='' ">AND create_person  =#{createPerson}</if>
+            <if test="updateTime !=null and updateTime !='' ">AND update_time    =#{updateTime}</if>
+            <if test="updatePerson !=null and updatePerson !='' ">AND update_person  =#{updatePerson}</if>
+        </where>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from `user`
+    </select>
+
+    <select id="selectByPrimaryKey"  parameterType="java.lang.String" resultType="com.oauth.entity.User">
+        select
+        *
+        from `user`
+        where user_id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <insert id="insert" parameterType="com.oauth.entity.User" >
+        insert into `user`
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                user_id,
+            </if>
+            <if test="userOpenid != null" >
+                user_openid,
+            </if>
+            <if test="userName != null" >
+                user_name,
+            </if>
+            <if test="userPassword != null" >
+                user_password,
+            </if>
+            <if test="userNickName != null" >
+                user_nickname,
+            </if>
+            <if test="userSex != null" >
+                user_sex,
+            </if>
+            <if test="userCountry != null" >
+                user_country,
+            </if>
+
+            <if test="userCity != null" >
+                user_city,
+            </if>
+            <if test="userHeadImgUrl != null" >
+                user_headImgUrl,
+            </if>
+            <if test="userRole != null" >
+                user_role,
+            </if>
+            <if test="userPhone != null" >
+                user_phone,
+            </if>
+            <if test="userStatus != null" >
+                user_status,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="createPerson != null" >
+                create_person,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
+            <if test="updatePerson != null" >
+                update_person,
+            </if>
+        </trim>
+
+
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="userId != null" >
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="userOpenid != null" >
+                #{userOpenid,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null" >
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null" >
+                #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userNickName != null" >
+                #{userNickName,jdbcType=INTEGER},
+            </if>
+            <if test="userSex != null" >
+                #{userSex,jdbcType=INTEGER},
+            </if>
+            <if test="userPhone != null" >
+                #{userPhone,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userPhone != null" >
+                #{userPhone,jdbcType=TIMESTAMP},
+            </if>
+
+            <if test="userProvince != null" >
+                #{userProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="userCity != null" >
+                #{userCity,jdbcType=VARCHAR},
+            </if>
+            <if test="userHeadImgUrl != null" >
+                #{userHeadImgUrl,jdbcType=INTEGER},
+            </if>
+            <if test="userRole != null" >
+                #{userRole,jdbcType=INTEGER},
+            </if>
+            <if test="userStatus != null" >
+                #{userStatus,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="createPerson != null" >
+                #{createPerson,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=VARCHAR},
+            </if>
+            <if test="updatePerson != null" >
+                #{updatePerson,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.oauth.entity.User" >
+        update huishanghe.userinfo
+        set
+        user_openid = #{userNumber,jdbcType=VARCHAR},
+        user_name = #{userSercet,jdbcType=VARCHAR},
+        user_password = #{userStatus,jdbcType=INTEGER},
+        user_nickname = #{userCanSend,jdbcType=INTEGER},
+        user_sex = #{userIsSend,jdbcType=TIMESTAMP},
+        user_country = #{userCustomer,jdbcType=VARCHAR},
+        user_city = #{createTime,jdbcType=TIMESTAMP},
+        user_headImgUrl = #{createPerson,jdbcType=VARCHAR}
+        user_role = #{updateTime,jdbcType=VARCHAR}
+        user_phone = #{updatePerson,jdbcType=VARCHAR}
+        user_status = #{updatePerson,jdbcType=VARCHAR}
+        user_phone = #{updatePerson,jdbcType=VARCHAR}
+        create_time = #{updatePerson,jdbcType=VARCHAR}
+        create_person = #{updatePerson,jdbcType=VARCHAR}
+        update_time = #{updatePerson,jdbcType=VARCHAR}
+        update_person = #{updatePerson,jdbcType=VARCHAR}
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+
+
+
+</mapper>

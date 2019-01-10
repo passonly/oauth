@@ -2,36 +2,135 @@
         <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
     <mapper namespace="com.oauth.dao.OrderInfoMapper">
-    <!--<resultMap id="selectAll" type="com.oauth.entity.OrderInfo">-->
-        <!--<result property="order_id" column="orderId"></result>-->
-        <!--<result property="order_umber" column="orderNumber" ></result>-->
-        <!--<result property="order_sercet" column="orderSercet" ></result>-->
-        <!--<result property="order_status" column="orderStatus" ></result>-->
-        <!--<result property="order_can_send" column="orderCanSend" ></result>-->
-        <!--<result property="order_is_send" column="orderIsSend" ></result>-->
-        <!--<result property="order_customer" column="orderCustomer" ></result>-->
-        <!--<result property="create_time" column="createTime" ></result>-->
-        <!--<result property="create_person" column="createPerson" ></result>-->
-        <!--<result property="update_time" column="updateTime" ></result>-->
-        <!--<result property="update_person" column="updatePerson" ></result>-->
-    <!--</resultMap>-->
 
     <select id="selectByEntity" resultType="com.oauth.entity.OrderInfo">
         select * from orderinfo
+        <!--<where>-->
+            <!--<if test=" orderId !=null and orderId !='' ">AND order_id =#{ orderId }</if>-->
+            <!--<if test=" orderNumber !=null and orderNumber !='' ">AND order_number =#{ orderNumber }</if>-->
+            <!--<if test=" orderSercet !=null and orderSercet !='' ">AND order_sercet =#{ orderSercet }</if>-->
+            <!--<if test=" orderStatus !=null and orderStatus !='' ">AND order_status =#{ orderStatus }</if>-->
+            <!--<if test=" orderCanSend !=null and orderCanSend !='' ">AND order_can_send =#{ orderCanSend }</if>-->
+            <!--<if test=" orderIsSend !=null and orderIsSend !='' ">AND order_is_send =#{ orderIsSend }</if>-->
+            <!--<if test=" orderCustomer !=null and orderCustomer !='' ">AND order_customer =#{ orderCustomer }</if>-->
+            <!--<if test=" createTime !=null and createTime !='' ">AND create_time =#{ createTime }</if>-->
+            <!--<if test=" createPerson !=null and createPerson !='' ">AND create_person =#{ createPerson }</if>-->
+            <!--<if test=" updateTime !=null and updateTime !='' ">AND update_time =#{ updateTime }</if>-->
+            <!--<if test=" updatePerson !=null and updatePerson !='' ">AND update_person =#{ updatePerson }</if>-->
+        <!--</where>-->
     </select>
 
     <select id="count" resultType="int">
         select count(*) from orderinfo
     </select>
 
-    <select id="selectByPrimaryKey"  parameterType="java.lang.String" >
+    <select id="selectByPrimaryKey"  parameterType="java.lang.String" resultType="com.oauth.entity.OrderInfo">
         select
         *
-        from t_user_invite_rank
-        where id = #{id,jdbcType=INTEGER}
+        from orderinfo
+        where order_id = #{id,jdbcType=INTEGER}
     </select>
 
+    <insert id="insert" parameterType="com.oauth.entity.OrderInfo" >
+        insert into orderinfo
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="orderId != null" >
+                order_id,
+            </if>
+            <if test="orderNumber != null" >
+                order_number,
+            </if>
+            <if test="orderSercet != null" >
+                order_sercet,
+            </if>
+            <if test="orderStatus != null" >
+                order_status,
+            </if>
+            <if test="orderCanSend != null" >
+                order_can_send,
+            </if>
+            <if test="orderIsSend != null" >
+                order_is_send,
+            </if>
+            <if test="orderCustomer != null" >
+                order_customer,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="createPerson != null" >
+                create_person,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
+            <if test="updatePerson != null" >
+                update_person,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="orderId != null" >
+                #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="orderNumber != null" >
+                #{orderNumber,jdbcType=INTEGER},
+            </if>
+            <if test="orderSercet != null" >
+                #{orderSercet,jdbcType=VARCHAR},
+            </if>
+            <if test="orderStatus != null" >
+                #{orderStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="orderCanSend != null" >
+                #{orderCanSend,jdbcType=INTEGER},
+            </if>
+            <if test="orderIsSend != null" >
+                #{orderIsSend,jdbcType=INTEGER},
+            </if>
+            <if test="orderCustomer != null" >
+                #{orderCustomer,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="createPerson != null" >
+                #{createPerson,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=VARCHAR},
+            </if>
+            <if test="updatePerson != null" >
+                #{updatePerson,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
 
+    <!--orderId;-->
+    <!--orderNumber;-->
+    <!--orderSercet;-->
+    <!--orderStatus;-->
+    <!--orderCanSend;-->
+    <!--orderIsSend;-->
+    <!--orderCustomer-->
+    <!--createTime;-->
+    <!--createPerson;-->
+    <!--updateTime;-->
+    <!--updatePerson;-->
+    <update id="updateByPrimaryKey" parameterType="com.oauth.entity.OrderInfo" >
+        update huishanghe.orderinfo
+        set
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+        order_sercet = #{orderSercet,jdbcType=VARCHAR},
+        order_status = #{orderStatus,jdbcType=INTEGER},
+        order_can_send = #{orderCanSend,jdbcType=INTEGER},
+        order_is_send = #{orderIsSend,jdbcType=TIMESTAMP},
+        order_customer = #{orderCustomer,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_person = #{createPerson,jdbcType=VARCHAR}
+        update_time = #{updateTime,jdbcType=VARCHAR}
+        update_person = #{updatePerson,jdbcType=VARCHAR}
+        where order_id = #{orderId,jdbcType=INTEGER}
+    </update>
     <!--<select id="get" resultType="com.oauth.entity.OrderInfo">-->
         <!--select * from orderinfo where id = #{value}-->
     <!--</select>-->

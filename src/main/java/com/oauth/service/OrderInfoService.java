@@ -13,5 +13,9 @@ public interface OrderInfoService {
 
     List<OrderInfo> selectByEntity(int currentPage, int pageSize);
 
-    void insertOrder(OrderInfo orderInfo);
+    void insert(OrderInfo orderInfo);
+
+    void update(OrderInfo orderInfo);
+
+    OrderInfo selectByPrimaryKey(String id);
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SubButton extends AbstractButton{
 
-    private List<AbstractButton> subButton = new ArrayList<>();
+    private List<AbstractButton> subButton = new ArrayList();
 
     public SubButton(String name) {
         super(name);

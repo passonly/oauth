@@ -131,6 +131,5 @@ public class MessageController {
         String s = HttpUtil.doPost(url, param);
         System.out.println(s);
         response.sendRedirect(url);
-
     }
 }

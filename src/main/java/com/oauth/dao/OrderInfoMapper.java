@@ -19,11 +19,11 @@ public interface OrderInfoMapper {
 //    @Select("select * from orderinfo")
     List<OrderInfo> selectByEntity();
 
-    void update(OrderInfo orderInfo);
-
-    void insertOrder(OrderInfo orderInfo);
+    void updateByPrimaryKey(OrderInfo orderInfo);
 
     int count();
 
     OrderInfo selectByPrimaryKey(String id);
+
+    void insert(OrderInfo orderInfo);
 }

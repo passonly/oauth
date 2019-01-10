@@ -37,11 +37,31 @@ public class OrderInfoController {
      *
      * @return
      */
-    @RequestMapping("/insertOrder")
+    @RequestMapping("/insert")
     public void insertOrder(OrderInfo orderInfo){
         orderInfo.setOrderId(UUID.randomUUID().toString());
         orderInfo.setCreateTime(new Date());
-        orderInfoService.insertOrder(orderInfo);
+        orderInfo.setUpdateTime(new Date());
+        orderInfoService.insert(orderInfo);
+    }
+
+    /**
+     *
+     * @return
+     */
+    @RequestMapping("/selectById")
+    public OrderInfo selectByPrimaryKey(String id){
+
+       return  orderInfoService.selectByPrimaryKey(id);
+    }
+
+    /**
+     *
+     * @return
+     */
+    @RequestMapping("/update")
+    public void upate(OrderInfo orderInfo){
+        orderInfoService.update(orderInfo);
     }
 
 }
