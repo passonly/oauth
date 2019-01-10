@@ -20,7 +20,7 @@ public class TestAction {
 
         try {
             // 获取图文素材列表信息
-            String accessToken = WXUtil.getAccessToken();
+            String accessToken = WXUtil.getAccessTokenfromHttp();
             Map<String, Object> pamas = new HashMap<String, Object>();
             pamas.put("type", "image"); //素材的类型，图片（image）、视频（video）、语音 （voice）、图文（news）
             pamas.put("offset", "0");

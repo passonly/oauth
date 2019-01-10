@@ -37,6 +37,8 @@ public class OrderInfoController {
      */
     @RequestMapping("/insertOrder")
     public void insertOrder(OrderInfo orderInfo){
+
+
         orderInfoService.insertOrder(orderInfo);
     }
 

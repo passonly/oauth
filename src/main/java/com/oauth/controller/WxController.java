@@ -1,8 +1,6 @@
 package com.oauth.controller;
 
-import com.oauth.utils.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.BufferedReader;
@@ -25,7 +23,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.oauth.constant.Constants;
-import com.oauth.entity.OrderInfo;
 import com.oauth.service.OrderInfoService;
 import com.oauth.utils.NetUtil;
 import com.oauth.utils.Oauth2Token;
@@ -42,6 +39,8 @@ import com.oauth.vo.R;
 @RestController
 public class WxController {
 
+    private static  Logger log = LoggerFactory.getLogger(WxController.class);
+
     @Autowired
     private OrderInfoService orderInfoService;
 
@@ -53,50 +52,30 @@ public class WxController {
 
     @RequestMapping("/getAccessToken")
     public String getAccessToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-        String access_token = null;
-        //从cookie中获取access_token
-        access_token = WXUtil.getAccessTokenFromCookie(request,response);
-        //如果cookie中没有，则重新获取access_token，并存入cookie
-        if (access_token == null || "".equals(access_token)){
-            access_token = WXUtil.getAccessToken();
-            Cookie cookie = new Cookie("access_token",access_token);
-            cookie.setMaxAge(7200);
-            response.addCookie(cookie);
-        }
+        String access_token = WXUtil.getAccessToken(request,response);
         return access_token;
     }
 
     @RequestMapping("/hello")
     public String home(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
         System.out.println("========WechatController========= ");
-
         Enumeration pNames = request.getParameterNames();
         while (pNames.hasMoreElements()) {
             String name = (String) pNames.nextElement();
             String value = request.getParameter(name);
             // out.print(name + "=" + value);
-
             String log = "name =" + name + "     value =" + value;
         }
-
         String signature = request.getParameter("signature");/// 微信加密签名
         String timestamp = request.getParameter("timestamp");/// 时间戳
         String nonce = request.getParameter("nonce"); /// 随机数
         String echostr = request.getParameter("echostr"); // 随机字符串
         PrintWriter out = response.getWriter();
-
         out.print(echostr);
         out.close();
-        out = null;
-
         return "Hello World!";
     }
 
-
-
-    private static  Logger log = LoggerFactory.getLogger(WxController.class);
 
 
     /**
@@ -142,10 +121,6 @@ public class WxController {
             while ((line = in.readLine()) != null) {
                 result += line;
             }
-            /*  com.alibaba.fastjson.JSONObject jsonObj= FastJSONUtils.getJSONObject(result);
-                String access_token = jsonObj.getString("access_token");
-                long expires_in = Long.valueOf(jsonObj.getString("expires_in"));
-            */
         } catch (Exception e) {
             System.out.println("发送GET请求出现异常！" + e);
             e.printStackTrace();
@@ -170,8 +145,6 @@ public class WxController {
         Map<String, String[]> params = request.getParameterMap();//针对get获取get参数
         String[] codes = params.get("code");//拿到code的值
         String code = codes[0];//code
-        //String[] states = params.get("state");
-        //String state = states[0];//state
 
         System.out.println("****************code:"+code);
         // 用户同意授权
@@ -188,50 +161,16 @@ public class WxController {
             System.out.println("openid:"+openId);
             System.out.println("accessToken:"+accessToken);
             System.out.println("***********************************用户信息unionId："+snsUserInfo.getUnionid()+"***:"+snsUserInfo.getNickname());
-            // 设置要传递的参数
+            //将用户保存到数据库中，根据openid判断是否存在用户
 
             //具体业务start
 
             //具体业务end
 
-            String url = "http://wftest.zzff.net/#/biddd?from=login&tokenId="+snsUserInfo.getUnionid();
-
+            String url = "http://jesus.ngrok.xiaomiqiu.cn/auth.html";
             response.sendRedirect(url);
-            return ;
         }
     }
-
-    /**
-     * 群发消息接口
-     */
-    @RequestMapping("/sendMessage")
-    @ResponseBody
-    public void sendMessage(HttpServletRequest request,HttpServletResponse response,String access_token) throws Exception {
-
-        // 获取网页授权access_token
-        access_token = "17_oRNq0UtVSWEZVL4itU_7hgmwIEGAbjlCKSEhy8DV8MV1xbiPDYGyUNKZdZaAgpq2hPRLl83qZ81ftd8suNtxrPeZscAWMqvVRDmzA9p4EkjrB_24kaUi0Uslv4RsEznbFIlRFGI8x-mwkKKFPPEfAIABBQ";
-        // 设置要传递的参数
-        String param = "{\n" +
-                "   \"touser\":[\n" +
-                "    \"OPENID1\",\n" +
-                "    \"OPENID2\"\n" +
-                "   ],\n" +
-                "    \"msgtype\": \"text\",\n" +
-                "    \"text\": { \"content\": \"hello from boxer.\"}\n" +
-                "}";
-        //具体业务start
-
-        //具体业务end
-
-        String url = "https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=ACCESS_TOKEN";
-        url.replace("ACCESS_TOKEN",access_token);
-        param.replace("OPENID1","olyFc1CdGLBWWkhkfZoevCnWM1Hc");
-        param.replace("OPENID2","olyFc1CdGLBWWkhkfZoevCnWM1Hc");
-        String s = HttpUtil.doPost(url, param);
-        System.out.println(s);
-        response.sendRedirect(url);
-    }
-
 
     /**
      * 获取网页授权凭证
@@ -268,6 +207,7 @@ public class WxController {
         }
         return wat;
     }
+
 
     /**
      * 通过网页授权获取用户信息

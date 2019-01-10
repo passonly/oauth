@@ -18,7 +18,25 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class WXUtil {
 
-    public static String getAccessToken() throws Exception {
+    public static String getAccessToken(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        //如果cookie中有，则从cookie中获取
+        String accessToken = getAccessTokenFromCookie(request, response);
+
+        //如果cookie中没有，则重新获取access_token，并存入cookie
+        if (accessToken == null || "".equals(accessToken)){
+            accessToken = WXUtil.getAccessTokenfromHttp();
+            Cookie cookie = new Cookie("access_token",accessToken);
+            cookie.setMaxAge(7200);
+            response.addCookie(cookie);
+        }
+        return accessToken;
+    }
+
+    public static String getAccessTokenfromHttp() throws Exception {
+
+        //从cookie中获取access_token
+
+
         try {
             String tokenUrl = "https://api.weixin.qq.com/cgi-bin/token?" + "grant_type=client_credential"
                     + "&appid=" + Constants.APPID
@@ -46,7 +64,7 @@ public class WXUtil {
         for (int i = 0; i < cookie.length; i++) {
             Cookie cook = cookie[i];
             if(cook.getName().equalsIgnoreCase("access_token")){ //获取键
-                System.out.println("account:"+cook.getValue().toString());    //获取值
+                System.out.println("access_token:"+cook.getValue().toString());    //获取值
                 access_token = cook.getValue().toString();
             }
         }

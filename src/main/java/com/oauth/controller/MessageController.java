@@ -9,6 +9,7 @@ import com.oauth.entity.MessageTemplate;
 import com.oauth.utils.HttpClientUtil;
 import com.oauth.utils.HttpUtil;
 
+import com.oauth.utils.WXUtil;
 import net.sf.json.JSONObject;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,38 +30,13 @@ import java.util.Map;
 public class MessageController {
 
     @RequestMapping("/sendTemplateMessage")
-    public void sendTemplateMessage(String access_token) throws Exception {
+    public void sendTemplateMessage(HttpServletRequest request,HttpServletResponse response) throws Exception {
+
+
+        String access_token = WXUtil.getAccessToken(request,response);
         // 获取网页授权access_token
 //        String access_token = "17_xykZ-o18LKmHkAzhXeMheJ5hr448u16eX0VuRaiSLSCLRgWafmRmqoI8GouY_N7iSeDa7QqtqYvHGOQPpV0jbmjLsG8xfrGfCKe-ogD5N--4WUYSeT9KkWL5AkqrWUzmra-8VPP8n8UkniesLGXaAHACXO";
-        // 设置要传递的参数
-
-//        Map<String, Object> pamas = new HashMap<String, Object>();
-//        pamas.put("touser", "olyFc1CdGLBWWkhkfZoevCnWM1Hc"); //素材的类型，图片（image）、视频（video）、语音 （voice）、图文（news）
-//        pamas.put("template_id", "Wu550N9kIrl6K_OLrd4NUiGRZzgFxeoSBBYeKmIyQIs");
-//        pamas.put("url", "http://jesus.ngrok.xiaomiqiu.cn/aaa.jpg");
-//        Map<String, Object> data = new HashMap<String, Object>();
-//        Map<String, Object> first = new HashMap<String, Object>();
-//        first.put("value","汇尚合会员卡号填写");
-//        first.put("color","#173177");
-//        Map<String, Object> keyword1 = new HashMap<String, Object>();
-//        keyword1.put("value","姓名");
-//        keyword1.put("color","#173177");
-//        Map<String, Object> keyword2 = new HashMap<String, Object>();
-//        keyword2.put("value","时间");
-//        keyword2.put("color","#173177");
-//        Map<String, Object> remark = new HashMap<String, Object>();
-//        remark.put("value","请点击详情填写");
-//        remark.put("color","#173177");
-//        data.put("first",first);
-//        data.put("keyword1",keyword1);
-//        data.put("keyword2",keyword2);
-//        data.put("remark",remark);
-//        pamas.put("data", data);
-//
-//        String pamasJson = JSON.toJSONString(pamas, SerializerFeature.WriteMapNullValue);
-//        System.out.println(pamasJson);
-//
-
+        // 设置要传递的参数messageTemplate
         MessageTemplate messageTemplate = new MessageTemplate();
         messageTemplate.setTouser("olyFc1CdGLBWWkhkfZoevCnWM1Hc");
         messageTemplate.setTemplate_id("Wu550N9kIrl6K_OLrd4NUiGRZzgFxeoSBBYeKmIyQIs");
@@ -70,13 +46,13 @@ public class MessageController {
         first.setValue("汇尚合会员卡号填写");
         first.setColor("#173177");
         MessageFont keyword1 = new MessageFont();
-        keyword1.setValue("keyword1");
+        keyword1.setValue("会员卡号：");
         keyword1.setColor("#173177");
         MessageFont keyword2 = new MessageFont();
-        keyword2.setValue("keyword2");
+        keyword2.setValue("时间：");
         keyword2.setColor("#173177");
         MessageFont remark = new MessageFont();
-        remark.setValue("remark");
+        remark.setValue("请您点击详情填写会员卡信息");
         remark.setColor("#173177");
         messageData.setFirst(first);
         messageData.setKeyword1(keyword1);
@@ -84,33 +60,11 @@ public class MessageController {
         messageData.setRemark(remark);
         messageTemplate.setData(messageData);
         JSONObject jsonObject = JSONObject.fromObject(messageTemplate);
+        //参数url
         System.out.println(jsonObject);
         String url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token="+access_token;
-//        url.replace("ACCESS_TOKEN",access_token);
         String jsonTW = HttpClientUtil.httpPostWithJSON(url, jsonObject.toString());
-
-
-//        String param = "{\n" +
-//                "          \"industry_id1\":\"31\",\n" +
-//                "          \"industry_id2\":\"41\"\n" +
-//                "       }";
-
-
-
-//        Map<String, Object> pamas = new HashMap<String, Object>();
-//        pamas.put("type", "image"); //素材的类型，图片（image）、视频（video）、语音 （voice）、图文（news）
-//        pamas.put("offset", "0");
-//        pamas.put("count", "20");
-//        String pamasJson = JSON.toJSONString(pamas, SerializerFeature.WriteMapNullValue);
-//        // 图文素材
-//        String urlTW = "https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token="+access_token;
-//        // 获取菜单
-////        String urlmenu = "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token="+accessToken;
-//        String jsonTW = HttpClientUtil.httpPostWithJSON(urlTW, pamasJson);
-
         System.out.println(jsonTW);
-//        response.sendRedirect(url);
-
     }
 
 
