@@ -20,6 +20,8 @@ public class OrderInfo {
     private String createPerson;
     private Date   updateTime;
     private String updatePerson;
+    private String userName;
+    private String userPhone;
 
     public String getOrderId() {
         return orderId;
@@ -107,5 +109,21 @@ public class OrderInfo {
 
     public void setUpdatePerson(String updatePerson) {
         this.updatePerson = updatePerson;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
     }
 }

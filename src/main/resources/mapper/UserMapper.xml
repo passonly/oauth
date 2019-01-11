@@ -27,9 +27,9 @@
         <where>
             <if test="userId !=null and userId !='' ">AND user_id        =#{userId}</if>
             <if test="userOpenid !=null and userOpenid !='' ">AND user_openid    =#{userOpenid}</if>
-            <if test="userName !=null and userName !='' ">AND user_name      =#{userName}</if>
+            <if test="userName !=null and userName !='' ">AND user_name   like '%' #{userName} '%'</if>
             <if test="userPassword !=null and userPassword !='' ">AND user_password  =#{userPassword}</if>
-            <if test="userNickName !=null and userNickName !='' ">AND user_nickname  =#{userNickName}</if>
+            <if test="userNickName !=null and userNickName !='' ">AND user_nickname like '%' #{userNickName} '%' </if>
             <if test="userSex !=null and userSex !='' ">AND user_sex       =#{userSex}</if>
             <if test="userCountry !=null and userCountry !='' ">AND user_country   =#{userCountry}</if>
             <if test="userProvince !=null and userProvince !='' ">AND user_province  =#{userProvince}</if>
@@ -53,7 +53,7 @@
         select
         *
         from `user`
-        where user_id = #{id,jdbcType=INTEGER}
+        where user_openid = #{id,jdbcType=INTEGER}
     </select>
 
     <insert id="insert" parameterType="com.oauth.entity.User" >

@@ -13,6 +13,8 @@ public interface UserService {
 
     List<User> selectByEntity(int currentPage, int pageSize,User user);
 
+    List<User> selectByEntity(User user);
+
     void insert(User user);
 
     void update(User user);

@@ -6,12 +6,15 @@ import com.oauth.constant.Constants;
 import com.oauth.entity.MessageData;
 import com.oauth.entity.MessageFont;
 import com.oauth.entity.MessageTemplate;
+import com.oauth.entity.User;
+import com.oauth.service.UserService;
 import com.oauth.utils.HttpClientUtil;
 import com.oauth.utils.HttpUtil;
 
 import com.oauth.utils.WXUtil;
 import net.sf.json.JSONObject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +24,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,8 +33,11 @@ import java.util.Map;
 @RequestMapping("/sendMessage")
 public class MessageController {
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/sendTemplateMessage")
-    public void sendTemplateMessage(HttpServletRequest request,HttpServletResponse response) throws Exception {
+    public void sendTemplateMessage(HttpServletRequest request,HttpServletResponse response,String openid) throws Exception {
 
 
         String access_token = WXUtil.getAccessToken(request,response);
@@ -38,18 +45,20 @@ public class MessageController {
 //        String access_token = "17_xykZ-o18LKmHkAzhXeMheJ5hr448u16eX0VuRaiSLSCLRgWafmRmqoI8GouY_N7iSeDa7QqtqYvHGOQPpV0jbmjLsG8xfrGfCKe-ogD5N--4WUYSeT9KkWL5AkqrWUzmra-8VPP8n8UkniesLGXaAHACXO";
         // 设置要传递的参数messageTemplate
         MessageTemplate messageTemplate = new MessageTemplate();
-        messageTemplate.setTouser("olyFc1CdGLBWWkhkfZoevCnWM1Hc");
+//        messageTemplate.setTouser("olyFc1CdGLBWWkhkfZoevCnWM1Hc");
+        messageTemplate.setTouser(openid);
         messageTemplate.setTemplate_id("Wu550N9kIrl6K_OLrd4NUiGRZzgFxeoSBBYeKmIyQIs");
-        messageTemplate.setUrl("http://jesus.ngrok.xiaomiqiu.cn/aaa.jpg");
+        messageTemplate.setUrl("http://"+Constants.URL+"/confirm.html");
         MessageData messageData = new MessageData();
         MessageFont first = new MessageFont();
         first.setValue("汇尚合会员卡号填写");
         first.setColor("#173177");
         MessageFont keyword1 = new MessageFont();
-        keyword1.setValue("会员卡号：");
+        User user = userService.selectByPrimaryKey(openid);
+        keyword1.setValue(user.getUserPhone());
         keyword1.setColor("#173177");
         MessageFont keyword2 = new MessageFont();
-        keyword2.setValue("时间：");
+        keyword2.setValue(new Date().toString());
         keyword2.setColor("#173177");
         MessageFont remark = new MessageFont();
         remark.setValue("请您点击详情填写会员卡信息");

@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface OrderInfoService {
 
-    List<OrderInfo> selectByEntity(int currentPage, int pageSize);
+    List<OrderInfo> selectByEntity(int currentPage, int pageSize,OrderInfo orderInfo);
 
     void insert(OrderInfo orderInfo);
 

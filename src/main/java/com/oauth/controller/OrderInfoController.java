@@ -1,15 +1,22 @@
 package com.oauth.controller;
 
+import com.oauth.constant.Constants;
 import com.oauth.entity.OrderInfo;
+import com.oauth.entity.User;
 import com.oauth.service.OrderInfoService;
+import com.oauth.utils.WXUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @Author: likun.
@@ -27,9 +34,29 @@ public class OrderInfoController {
      *
      * @return
      */
+    @RequestMapping("/queryorder")
+    public void queryuser(HttpServletRequest request, HttpServletResponse response){
+
+        String userphone = WXUtil.getCookie(request, response, "userphone");
+        try {
+            if ( userphone != null && !"".equals(userphone)) {
+                response.sendRedirect("http://" + Constants.URL + "/queryorder.html");
+            } else {
+                response.sendRedirect("http://" + Constants.URL + "/login.html");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     *
+     * @return
+     */
     @RequestMapping("/getList")
-    public List<OrderInfo> getList(int currentPage,int pageSize){
-        List<OrderInfo> orderInfos = orderInfoService.selectByEntity(currentPage, pageSize);
+    public List<OrderInfo> getList(int currentPage,int pageSize,OrderInfo orderInfo){
+        orderInfo.setCreatePerson("2");
+        List<OrderInfo> orderInfos = orderInfoService.selectByEntity(currentPage, pageSize,orderInfo);
         return orderInfos;
     }
 

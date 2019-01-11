@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
 //        return UserMapper.selectByEntity();
     }
 
+    public List<User> selectByEntity(User user) {
+        List<User> allItems = UserMapper.selectByEntity(user);
+        return allItems;
+    }
+
     public void insert(User user) {
         UserMapper.insert(user);
     }

@@ -71,4 +71,17 @@ public class WXUtil {
         return access_token;
     }
 
+    public static String getCookie(HttpServletRequest request, HttpServletResponse response,String cookieName){
+        // 获取request里面的cookie cookie里面存值方式也是 键值对的方式
+        String cookieValue = null;
+        Cookie[] cookie = request.getCookies();
+        if (cookie == null) return null;
+        for (int i = 0; i < cookie.length; i++) {
+            Cookie cook = cookie[i];
+            if(cook.getName().equalsIgnoreCase(cookieName)){ //获取键
+                cookieValue = cook.getValue().toString();
+            }
+        }
+        return cookieValue;
+    }
 }

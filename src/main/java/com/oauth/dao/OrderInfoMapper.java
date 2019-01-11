@@ -17,7 +17,7 @@ import java.util.List;
 public interface OrderInfoMapper {
 
 //    @Select("select * from orderinfo")
-    List<OrderInfo> selectByEntity();
+    List<OrderInfo> selectByEntity(OrderInfo orderInfo);
 
     void updateByPrimaryKey(OrderInfo orderInfo);
 

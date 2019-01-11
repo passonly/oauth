@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Formatter;
 import java.util.List;
@@ -24,7 +25,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.oauth.constant.Constants;
+import com.oauth.entity.User;
 import com.oauth.service.OrderInfoService;
+import com.oauth.service.UserService;
 import com.oauth.utils.NetUtil;
 import com.oauth.utils.Oauth2Token;
 import com.oauth.utils.SNSUserInfo;
@@ -43,12 +46,12 @@ public class WxController {
     private static  Logger log = LoggerFactory.getLogger(WxController.class);
 
     @Autowired
-    private OrderInfoService orderInfoService;
+    private UserService userService;
 
     @RequestMapping("/")
     public void root(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        response.sendRedirect("http://jesus.ngrok.xiaomiqiu.cn/MP_verify_IQ071dRr6uE19t50.txt\"");
+        response.sendRedirect("http://"+Constants.URL+"/MP_verify_IQ071dRr6uE19t50.txt\"");
     }
 
     @RequestMapping("/getAccessToken")
@@ -93,12 +96,39 @@ public class WxController {
     public static void authorize(HttpServletRequest request, HttpServletResponse response) {
         String appid = Constants.APPID;
         //String uri ="wftest.zzff.net/wx/weixinLogin";
-        String uri = urlEncodeUTF8("http://jesus.ngrok.xiaomiqiu.cn/weixinLogin");
+        String uri = urlEncodeUTF8("http://"+Constants.URL+"/login.html");
 //        String result = "";
 //        BufferedReader in = null;
 //        try {
-            String urlNameString = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+uri+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-
+        //如果cookie中有用户数据，直接跳转到注册成功页面
+        String url = "http://"+Constants.URL+"/auth.html";
+        boolean flag = false;
+        Cookie[] cookies = request.getCookies();
+        //cookie为空，则去注册
+        if (cookies == null) {
+            try {
+                response.sendRedirect(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        //查找cookie中是否有用户信息
+        for (int i = 0; i < cookies.length; i++) {
+            Cookie cook = cookies[i];
+            if(cook.getName().equalsIgnoreCase("user_openid")){ //获取键
+                System.out.println("user_openid:"+cook.getValue().toString());    //获取值
+                flag = true;
+            }
+        }
+        //如果没有用户信息，则去注册，有则跳转到注册成功页面
+        if ( flag){
+            try {
+                response.sendRedirect(url);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        String urlNameString = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+uri+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 //            URL realUrl = new URL(urlNameString);
 //            // 打开和URL之间的连接
 //            URLConnection connection = realUrl.openConnection();
@@ -138,24 +168,21 @@ public class WxController {
 //            }
 //        }
 //        return  R.ok(result);
-
         try {
             response.sendRedirect(urlNameString);
         } catch (Exception e) {
             log.error("网页跳转错误");
             e.printStackTrace();
         }
-
-
     }
 
     @RequestMapping("/weixinLogin")
     @ResponseBody
-    public void weixinLogin(HttpServletRequest request,HttpServletResponse response) throws Exception {
-        // 用户同意授权后，能获取到code
-        Map<String, String[]> params = request.getParameterMap();//针对get获取get参数
-        String[] codes = params.get("code");//拿到code的值
-        String code = codes[0];//code
+    public void weixinLogin(HttpServletRequest request,HttpServletResponse response,String code,String phone,String userName) throws Exception {
+//        // 用户同意授权后，能获取到code
+//        Map<String, String[]> params = request.getParameterMap();//针对get获取get参数
+//        String[] codes = params.get("code");//拿到code的值
+//        String code = codes[0];//code
 
         System.out.println("****************code:"+code);
         // 用户同意授权
@@ -172,13 +199,34 @@ public class WxController {
             System.out.println("openid:"+openId);
             System.out.println("accessToken:"+accessToken);
             System.out.println("***********************************用户信息unionId："+snsUserInfo.getUnionid()+"***:"+snsUserInfo.getNickname());
-            //将用户保存到数据库中，根据openid判断是否存在用户
 
-            //具体业务start
+            //根据openid查询用户
+            User user = null;
+            user = userService.selectByPrimaryKey(openId);
 
-            //具体业务end
+            //保存用户到数据库
+            if ( user == null) {
+                user = new User();
+                user.setUserId(UUID.randomUUID().toString());
+                user.setUserOpenid(openId);
+                user.setUserName(userName);
+                user.setUserNickName(snsUserInfo.getNickname());
+                user.setCreateTime(new Date());
+                user.setUserCountry(snsUserInfo.getCountry());
+                user.setUserProvince(snsUserInfo.getProvince());
+                user.setUserCity(snsUserInfo.getCity());
+                user.setUserPassword("");
+                user.setUserPhone(phone);
+                user.setUserSex(snsUserInfo.getSex()+"");
+                user.setUserStatus("0");
 
-            String url = "http://jesus.ngrok.xiaomiqiu.cn/auth.html";
+                userService.insert(user);
+            }
+            //保存用户信息openid到cookie
+            Cookie cookie = new Cookie("user_openid",openId);
+            response.addCookie(cookie);
+
+            String url = "http://"+Constants.URL+"/auth.html";
             response.sendRedirect(url);
         }
     }
