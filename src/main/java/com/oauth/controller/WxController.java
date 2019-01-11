@@ -102,33 +102,39 @@ public class WxController {
 //        try {
         //如果cookie中有用户数据，直接跳转到注册成功页面
         String url = "http://"+Constants.URL+"/auth.html";
+        String urlNameString = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+uri+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+
         boolean flag = false;
         Cookie[] cookies = request.getCookies();
         //cookie为空，则去注册
         if (cookies == null) {
             try {
-                response.sendRedirect(url);
+                response.sendRedirect(urlNameString);
+                return;
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         //查找cookie中是否有用户信息
-        for (int i = 0; i < cookies.length; i++) {
-            Cookie cook = cookies[i];
-            if(cook.getName().equalsIgnoreCase("user_openid")){ //获取键
-                System.out.println("user_openid:"+cook.getValue().toString());    //获取值
-                flag = true;
+        if (cookies != null) {
+            for (int i = 0; i < cookies.length; i++) {
+                Cookie cook = cookies[i];
+                if (cook.getName().equalsIgnoreCase("user_openid")) { //获取键
+                    System.out.println("user_openid:" + cook.getValue().toString());    //获取值
+                    flag = true;
+                }
             }
         }
         //如果没有用户信息，则去注册，有则跳转到注册成功页面
         if ( flag){
             try {
                 response.sendRedirect(url);
+                return;
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        String urlNameString = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+uri+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+//        String urlNameString = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+uri+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 //            URL realUrl = new URL(urlNameString);
 //            // 打开和URL之间的连接
 //            URLConnection connection = realUrl.openConnection();
@@ -170,10 +176,12 @@ public class WxController {
 //        return  R.ok(result);
         try {
             response.sendRedirect(urlNameString);
-        } catch (Exception e) {
-            log.error("网页跳转错误");
+            return;
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
     @RequestMapping("/weixinLogin")
