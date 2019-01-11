@@ -1,24 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4594fa94-0ac3-491a-a4f8-f88a8c2b447e" name="Default" comment="011101">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/queryuser.html" />
+    <list default="true" id="4594fa94-0ac3-491a-a4f8-f88a8c2b447e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/constant/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/constant/Constants.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/controller/MessageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/controller/MessageController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/controller/OrderInfoController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/controller/OrderInfoController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/controller/UserController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/controller/WxController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/controller/WxController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/dao/OrderInfoMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/dao/OrderInfoMapper.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/entity/OrderInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/entity/OrderInfo.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/service/OrderInfoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/OrderInfoService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/UserService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/OrderInfoServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/OrderInfoServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/UserServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/utils/WXUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/utils/WXUtil.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/OrderInfoMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/OrderInfoMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/login.html" afterPath="$PROJECT_DIR$/src/main/resources/static/login.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -183,9 +167,13 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="PUSH_TAGS">
-      <GitPushTagMode />
+      <GitPushTagMode>
+        <option name="argument" value="--follow-tags" />
+        <option name="title" value="Current Branch" />
+      </GitPushTagMode>
     </option>
   </component>
   <component name="GradleLocalSettings">
@@ -462,6 +450,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="E:/workspace/wyp-kq-bgs" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -666,7 +655,7 @@
       <updated>1546568748324</updated>
       <workItem from="1546568753350" duration="11996000" />
       <workItem from="1546910148169" duration="4247000" />
-      <workItem from="1546922479636" duration="72464000" />
+      <workItem from="1546922479636" duration="72537000" />
     </task>
     <task id="LOCAL-00001" summary="0108">
       <created>1546943878358</created>
@@ -731,15 +720,21 @@
       <option name="project" value="LOCAL" />
       <updated>1547121094997</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="011101">
+      <created>1547187431517</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1547187431517</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88707000" />
+    <option name="totallyTimeSpent" value="88780000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
