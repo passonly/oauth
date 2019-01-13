@@ -186,7 +186,7 @@ public class WxController {
 
     @RequestMapping("/weixinLogin")
     @ResponseBody
-    public void weixinLogin(HttpServletRequest request,HttpServletResponse response,String code,String phone,String userName) throws Exception {
+    public void weixinLogin(HttpServletRequest request,HttpServletResponse response,String code,String userPhone,String userName) throws Exception {
 //        // 用户同意授权后，能获取到code
 //        Map<String, String[]> params = request.getParameterMap();//针对get获取get参数
 //        String[] codes = params.get("code");//拿到code的值
@@ -224,7 +224,7 @@ public class WxController {
                 user.setUserProvince(snsUserInfo.getProvince());
                 user.setUserCity(snsUserInfo.getCity());
                 user.setUserPassword("");
-                user.setUserPhone(phone);
+                user.setUserPhone(userPhone);
                 user.setUserSex(snsUserInfo.getSex()+"");
                 user.setUserStatus("0");
 
