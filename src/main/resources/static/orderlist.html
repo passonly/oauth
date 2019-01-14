@@ -1,233 +1,189 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>登陆</title>
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>登陆</title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
 
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<style>
-		main{
-			margin-top:30px;
-		}
-		.page{
-			height:34px;
-			text-align: center;
-			margin:30px 0;
-		}
-		nav{
-			display: inline-block;
-		}
-		.pagination{
-			float:left;
-			margin:0;
-		}
-		.pagination li.elip a{
-			background:none;
-			border:none;
-			cursor:default;
-			outline: none;
-		}
-		.goto{
-			margin-left:20px;
-			float:left;
-			vertical-align: middle;
-			color:#999;
-			display: inline-block;
-		}
-		.goto input{
-			width:34px;
-			height:34px;
-			padding:0 3px;
-			border: 1px solid #ccc;
-		}
-		.goto .btn{
-			margin-left:20px;
-		}
-		@media (max-width:768px){
-			.page{
-				display: none;
-			}
-		}
-	</style>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        main {
+            margin-top: 30px;
+        }
+
+        .page {
+            height: 34px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        nav {
+            display: inline-block;
+        }
+
+        .pagination {
+            float: left;
+            margin: 0;
+        }
+
+        .pagination li.elip a {
+            background: none;
+            border: none;
+            cursor: default;
+            outline: none;
+        }
+
+        .goto {
+            margin-left: 20px;
+            float: left;
+            vertical-align: middle;
+            color: #999;
+            display: inline-block;
+        }
+
+        .goto input {
+            width: 34px;
+            height: 34px;
+            padding: 0 3px;
+            border: 1px solid #ccc;
+        }
+
+        .goto .btn {
+            margin-left: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .page {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
 
+<h2 style="margin-top:170px;text-align:center">订单查询</h2>
+<main style="margin-top:50px">
+    <div class='container'>
+        <form class="form-horizontal row">
+            <div class="form-group">
 
-	<main>
-		<div class='container'>
-			<form class="form-horizontal row">
-			  <div class="form-group">
-
-				  <div class="col-sm-6">
-					  <label for="inputEmail3" class="col-sm-2 control-label">订单号</label>
-					  <div class="col-sm-10">
-						  <input type="email" class="form-control" id="orderNum" placeholder="订单号">
-					  </div>
-				  </div>
-				  <div class="col-sm-6">
-					  <label for="inputEmail3" class="col-sm-2 control-label">订单号</label>
-					  <div class="col-sm-10">
-						  <input type="email" class="form-control" id="orderNum2" placeholder="订单号">
-					  </div>
-				  </div>
-			  </div>
-			  <div class="form-group">
-
-				<div class="col-sm-6">
-					<label for="inputPassword3" class="col-sm-2 control-label">订单密码</label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control" id="orderNum3" placeholder="订单密码">
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<label for="inputEmail3" class="col-sm-2 control-label">订单号</label>
-					<div class="col-sm-10">
-						<input type="email" class="form-control" id="orderNum4" placeholder="订单号">
-					</div>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="col-sm-6">
-					<label for="inputPassword3" class="col-sm-2 control-label">订单密码</label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword3" placeholder="订单密码">
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<label for="inputEmail3" class="col-sm-2 control-label">订单号</label>
-					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail3" placeholder="订单号">
-					</div>
-				</div>
-			</div>
-			 
-			  <div class="form-group">
-				  <div class="col-sm-6"></div>
-				  <div class="col-sm-6">
-					  <div class="col-sm-offset-9 col-sm-3">
-						  <button type="submit" class="btn btn-primary btn-block btn-lg">查询</button>
-					  </div>
-				  </div>
-
-			  </div>
-			</form>
+                <div class="col-sm-6">
+                    <label for="orderNumber" class="col-sm-2 control-label">订单号</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="orderNumber" name="orderNumber" placeholder="订单号">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="userPhone" class="col-sm-2 control-label">电话号码</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="userPhone" name="userPhone" placeholder="电话号码">
+                    </div>
+                </div>
+            </div>
 
 
-			<!--<table class="table table-bordered table-hover">-->
-				<!--<thead>-->
-					<!--<tr>-->
-						<!--<th data-field="branchName">订单号码</th><th>姓名</th><th>电话号码</th><th>待发货</th><th>已发货</th>-->
-					<!--</tr>-->
-				<!--</thead>-->
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <label for="userName" class="col-sm-2 control-label">姓名</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" name="userName" id="userName"
+                               placeholder="姓名">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="userOpenid" class="col-sm-2 control-label">openid</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="userOpenid" placeholder="userOpenid">
+                    </div>
+                </div>
+            </div>
 
-				<!--<tbody>-->
-					<!--<tr>-->
-						<!--<td>订单号码</td><td>姓名</td><td>电话号码</td><td>待发货</td><td>已发货</td>-->
-					<!--</tr>-->
-					<!--<tr>-->
-						<!--<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>-->
-					<!--</tr>-->
-					<!--<tr>-->
-						<!--<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>-->
-					<!--</tr>-->
-				<!--</tbody>-->
-			<!--</table>-->
+            <div class="form-group">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6">
+                    <div class="col-sm-offset-9 col-sm-3">
+                        <button type="submit" id="searchOrder" class="btn btn-primary btn-block btn-lg">查询</button>
+                    </div>
+                </div>
 
-			<div class="data-result mt20">
-				<div class="data-container">
-					<div id="toolbarlist">
-					</div>
-					<table data-classes="table table-hover table-striped"
-						   id="data-table-acount"
-						   data-click-to-select="true"
-						   data-url="inputacount/query"
-						   data-side-pagination="server"
-						   data-query-params-type="not-limit"
-						   data-pagination="true"
-						   data-page-list="[5,10,20,50]"
-						   data-page-size="5"
-						   data-toolbar="#toolbarlist"
-					<#--data-search="true"-->
-					data-show-refresh="true"
-					data-show-columns="true"
-					style="cursor: pointer;word-wrap: break-word">
+            </div>
+        </form>
 
-					<thead>
-					<tr class="text-center">
-						<th data-field="cstCode">客户号</th>
-						<th data-field="chgCode" >收费代码</th>
-						<th data-field="chg.chgName">收费名称</th>
-						<th data-field="pjCode">项目编码</th>
-						<th data-field="pj.pjName" data-width>项目名称</th>
-						<th data-field="tdDt">交易日期</th>
-						<th data-field="tdTm">交易时间</th>
-						<th data-field="tdOrg">交易机构</th>
-						<th data-field="brCode">所属分行</th>
-						<th data-field="rmbAmtMinRec" data-formatter="amounttt">应收(人民币)/元</th>
-						<th data-field="rmbAmtActRec" data-formatter="amounttt">实收(人民币)/元</th>
-						<th data-field="rmbAmtRdu" data-formatter="amounttt">减免(人民币)/元</th>
-						<#--<th data-field="amtMinRec" data-formatter="amounttt">应收(外币)</th>-->
-						<#--<th data-field="cryCode" data-visible="false">币种</th>-->
-						<#--<th data-field="amtActRec" data-formatter="amounttt">实收(外币)</th>-->
-						<#--<th data-field="amtRdu" data-formatter="amounttt">减免(外币)</th>-->
-						<#--<th data-field="exRate">折算汇率</th>-->
-						<th data-field="busSysCode" data-dict="SYSCODE">系统编号</th>
-						<#--<th data-field="ditSbCn">汇总批次</th>-->
-						<#--<th data-field="ditJrNo">交易日志号</th>-->
-						<#--<th data-field="pstTm">入账时间</th>-->
-						<th data-field="bgBlLn">所属业务条线</th>
-						<#--<th data-field="fpNo">收费计划编号</th>-->
-					</tr>
-					</thead>
-					</table>
-				</div>
+        <table id="mytab" class="table table-hover"></table>
 
-			</div>
+    </div>
+</main>
 
-			<div class='page'>
-				<nav aria-label="Page navigation">
-				  <ul class="pagination">
-				    <li class="disabled">
-				      <a href="#" aria-label="Previous">
-				        <span aria-hidden="true">上一页</span>
-				      </a>
-				    </li>
-				    <li class="active"><a href="#">1</a></li>
-				    <li><a href="#">2</a></li>
-				    <li><a href="#">3</a></li>
-				    <li><a href="#">4</a></li>
-				    <li class='elip'><a href="javascript:void(0)">...</a></li>
-				    <li><a href="#">5</a></li>
-				    <li>
-				      <a href="#" aria-label="Next">
-				        <span aria-hidden="true">下一页</span>
-				      </a>
-				    </li>
-				  </ul>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/bootstrap-table-zh-CN.js"></script>
+<script>
+    // $(document).ready(function(){
+    //     $(".table").on("click","tr",function(){
+    //        window.open("http://www.baidu.com");
+    // 	});
+    // });
+    $('#mytab').bootstrapTable({
+                                   url: '/order/getList?currentPage=1&pageSize=1000',
+                                   queryParams: "queryParams",
+                                   toolbar: "#toolbar",
+                                   sidePagination: "true",
+                                   striped: true, // 是否显示行间隔色
+                                   //search : "true",
+                                   uniqueId: "ID",
+                                   pageSize: "10",
+                                   pagination: true, // 是否分页
+                                   sortable: true, // 是否启用排序
+                                   columns: [{
+                                       field: 'orderNumber',
+                                       title: '订单号码'
+                                   },
+                                   {
+                                       field: 'createPerson',
+                                       title: 'openid'
+                                   },
+                                   {
+                                       field: 'userName',
+                                       title: '用户姓名'
+                                   },
+                                   {
+                                       field: 'userPhone',
+                                       title: '手机号码'
+                                   },
+                                   {
+                                       field: 'orderCanSend',
+                                       title: '状态',
+                                   }
+                                   ,
+                                   {
+                                       field: 'createTime',
+                                       title: '创建时间',
+                                       formatter: function (value, row, index) {
+                                           return changeDateFormat(value)
+                                       }
+                                   }]
+                               });
 
-				  <div class='goto'>
-				  	共265页，到第 <input type="text"> 页  <button type="button" class="btn btn-default">确定</button>
-				  </div>
-				</nav>
-			</div>
+    //修改——转换日期格式(时间戳转换为datetime格式)
+    function changeDateFormat(cellval) {
+        if (cellval != null) {
+            var dateStr = cellval.substring(0,4) +"-" +cellval.substring(4,6) +"-" +cellval.substring(6,8) +" " +cellval.substring(8,10) +":" +cellval.substring(10,12) +":" +cellval.substring(12,14)
+            return dateStr;
+        }
+    }
 
-		</div>	
-	</main>
+    $('#searchOrder').on('click',function (e) {
+        var orderNumber = $('#orderNumber').val();
+        var userPhone = $('#userPhone').val();
+        var userName = $('#userName').val();
+        var userOpenid = $('#userOpenid').val();
+    })
 
-	 <script src="js/jquery-1.11.3.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script>
-		$(document).ready(function(){
-		    $(".table").on("click","tr",function(){
-                window.open("http://www.baidu.com");
-			});
-		});
-	</script>
+</script>
 
 </body>
 </html>

@@ -55,7 +55,7 @@ public class OrderInfoController {
      */
     @RequestMapping("/getList")
     public List<OrderInfo> getList(int currentPage,int pageSize,OrderInfo orderInfo){
-        orderInfo.setCreatePerson("2");
+//        orderInfo.setCreatePerson("2");
         List<OrderInfo> orderInfos = orderInfoService.selectByEntity(currentPage, pageSize,orderInfo);
         return orderInfos;
     }

@@ -1,5 +1,7 @@
 package com.oauth.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -22,8 +24,10 @@ public class User {
     private String userRole;
     private String userPhone;
     private String userStatus;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
     private String createPerson;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
     private String updatePerson;
 

@@ -80,8 +80,8 @@ public class UserController {
      */
     @RequestMapping("/getList")
     public List<User> getList(int currentPage,int pageSize,User user){
-        user.setUserName("ddd");
-        user.setUserOpenid("2");
+//        user.setUserName("ddd");
+//        user.setUserOpenid("2");
         List<User> users = userService.selectByEntity(currentPage, pageSize,user);
         return users;
     }
