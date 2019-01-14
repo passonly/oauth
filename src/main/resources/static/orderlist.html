@@ -118,25 +118,76 @@
 			</form>
 
 
-			<table class="table table-bordered table-hover">
-				<thead>
-					<tr>
-						<th data-field="branchName">订单号码</th><th>姓名</th><th>电话号码</th><th>待发货</th><th>已发货</th>
-					</tr>
-				</thead>
+			<!--<table class="table table-bordered table-hover">-->
+				<!--<thead>-->
+					<!--<tr>-->
+						<!--<th data-field="branchName">订单号码</th><th>姓名</th><th>电话号码</th><th>待发货</th><th>已发货</th>-->
+					<!--</tr>-->
+				<!--</thead>-->
 
-				<tbody>
-					<tr>
-						<td>订单号码</td><td>姓名</td><td>电话号码</td><td>待发货</td><td>已发货</td>
+				<!--<tbody>-->
+					<!--<tr>-->
+						<!--<td>订单号码</td><td>姓名</td><td>电话号码</td><td>待发货</td><td>已发货</td>-->
+					<!--</tr>-->
+					<!--<tr>-->
+						<!--<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>-->
+					<!--</tr>-->
+					<!--<tr>-->
+						<!--<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>-->
+					<!--</tr>-->
+				<!--</tbody>-->
+			<!--</table>-->
+
+			<div class="data-result mt20">
+				<div class="data-container">
+					<div id="toolbarlist">
+					</div>
+					<table data-classes="table table-hover table-striped"
+						   id="data-table-acount"
+						   data-click-to-select="true"
+						   data-url="inputacount/query"
+						   data-side-pagination="server"
+						   data-query-params-type="not-limit"
+						   data-pagination="true"
+						   data-page-list="[5,10,20,50]"
+						   data-page-size="5"
+						   data-toolbar="#toolbarlist"
+					<#--data-search="true"-->
+					data-show-refresh="true"
+					data-show-columns="true"
+					style="cursor: pointer;word-wrap: break-word">
+
+					<thead>
+					<tr class="text-center">
+						<th data-field="cstCode">客户号</th>
+						<th data-field="chgCode" >收费代码</th>
+						<th data-field="chg.chgName">收费名称</th>
+						<th data-field="pjCode">项目编码</th>
+						<th data-field="pj.pjName" data-width>项目名称</th>
+						<th data-field="tdDt">交易日期</th>
+						<th data-field="tdTm">交易时间</th>
+						<th data-field="tdOrg">交易机构</th>
+						<th data-field="brCode">所属分行</th>
+						<th data-field="rmbAmtMinRec" data-formatter="amounttt">应收(人民币)/元</th>
+						<th data-field="rmbAmtActRec" data-formatter="amounttt">实收(人民币)/元</th>
+						<th data-field="rmbAmtRdu" data-formatter="amounttt">减免(人民币)/元</th>
+						<#--<th data-field="amtMinRec" data-formatter="amounttt">应收(外币)</th>-->
+						<#--<th data-field="cryCode" data-visible="false">币种</th>-->
+						<#--<th data-field="amtActRec" data-formatter="amounttt">实收(外币)</th>-->
+						<#--<th data-field="amtRdu" data-formatter="amounttt">减免(外币)</th>-->
+						<#--<th data-field="exRate">折算汇率</th>-->
+						<th data-field="busSysCode" data-dict="SYSCODE">系统编号</th>
+						<#--<th data-field="ditSbCn">汇总批次</th>-->
+						<#--<th data-field="ditJrNo">交易日志号</th>-->
+						<#--<th data-field="pstTm">入账时间</th>-->
+						<th data-field="bgBlLn">所属业务条线</th>
+						<#--<th data-field="fpNo">收费计划编号</th>-->
 					</tr>
-					<tr>
-						<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>
-					</tr>
-					<tr>
-						<td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>
-					</tr>
-				</tbody>
-			</table>
+					</thead>
+					</table>
+				</div>
+
+			</div>
 
 			<div class='page'>
 				<nav aria-label="Page navigation">
