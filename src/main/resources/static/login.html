@@ -97,7 +97,6 @@
     $('#save').on('click', function () {
         // window.location.href = "http://www.baidu.com"
         // window.open("http://www.baidu.com");
-        var name,value;
         console.log(location.href);
         var str=location.href; //取得整个地址栏
         var num=str.indexOf("?")
@@ -107,7 +106,7 @@
 		var code = arr[0].substring(arr[0].indexOf("=") + 1)
 		// window.open("http://localhost:80/weixinLogin")
 
-		console.log("11111111111111111111");
+		// console.log("11111111111111111111");
 
         var params = $('#logininfo').serializeObject();
 
@@ -124,8 +123,7 @@
                 console.log(result);//打印服务端返回的数据(调试用)
                 if (result.resultCode == 200) {
                     alert("SUCCESS");
-                }
-                ;
+                };
             },
             error : function() {
                 alert("异常！");
