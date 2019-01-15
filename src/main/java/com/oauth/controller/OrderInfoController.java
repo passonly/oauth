@@ -34,6 +34,35 @@ public class OrderInfoController {
      *
      * @return
      */
+    @RequestMapping("/checkOrder")
+    public void checkOrder(HttpServletRequest request, HttpServletResponse response,OrderInfo orderInfo){
+
+        String userphone = WXUtil.getCookie(request, response, "userphone");
+        List<OrderInfo> orderInfos = orderInfoService.selectByEntity(0, 10, orderInfo);
+        if (orderInfos.size() > 1){
+            try {
+                throw new Exception("订单号不唯一");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (orderInfos.size() == 0){
+            try {
+                throw new Exception("订单号不存在");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        orderInfo = orderInfos.get(0);
+        orderInfo.setOrderCanSend("1");
+        orderInfoService.update(orderInfo);
+
+    }
+
+    /**
+     *
+     * @return
+     */
     @RequestMapping("/queryorder")
     public void queryuser(HttpServletRequest request, HttpServletResponse response){
 
