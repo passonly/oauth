@@ -67,19 +67,19 @@
 <h2 style="margin-top:170px;text-align:center">订单查询</h2>
 <main style="margin-top:50px">
     <div class='container'>
-        <form class="form-horizontal row">
+        <form id="conditionForm" class="form-horizontal row">
             <div class="form-group">
 
                 <div class="col-sm-6">
                     <label for="orderNumber" class="col-sm-2 control-label">订单号</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="orderNumber" name="orderNumber" placeholder="订单号">
+                        <input type="text" class="form-control" id="orderNumber" name="orderNumber" placeholder="订单号">
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <label for="userPhone" class="col-sm-2 control-label">电话号码</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="userPhone" name="userPhone" placeholder="电话号码">
+                        <input type="text" class="form-control" id="userPhone" name="userPhone" placeholder="电话号码">
                     </div>
                 </div>
             </div>
@@ -89,14 +89,14 @@
                 <div class="col-sm-6">
                     <label for="userName" class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-10">
-                        <input type="password" class="form-control" name="userName" id="userName"
+                        <input type="text" class="form-control" name="userName" id="userName"
                                placeholder="姓名">
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <label for="userOpenid" class="col-sm-2 control-label">openid</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="userOpenid" placeholder="userOpenid">
+                        <input type="text" class="form-control" name="userOpenid" id="userOpenid" placeholder="userOpenid">
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                 <div class="col-sm-6"></div>
                 <div class="col-sm-6">
                     <div class="col-sm-offset-9 col-sm-3">
-                        <button type="submit" id="searchOrder" class="btn btn-primary btn-block btn-lg">查询</button>
+                        <button type="button" id="searchOrder" class="btn btn-primary btn-block btn-lg">查询</button>
                     </div>
                 </div>
 
@@ -121,15 +121,17 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-table.js"></script>
 <script src="js/bootstrap-table-zh-CN.js"></script>
+<script src="js/my.js"></script>
 <script>
     // $(document).ready(function(){
     //     $(".table").on("click","tr",function(){
     //        window.open("http://www.baidu.com");
     // 	});
     // });
-    $('#mytab').bootstrapTable({
+    var myTab = $('#mytab');
+    myTab.bootstrapTable({
                                    url: '/order/getList?currentPage=1&pageSize=1000',
-                                   queryParams: "queryParams",
+                                   queryParams: $("#conditionForm").serializeObject(),
                                    toolbar: "#toolbar",
                                    sidePagination: "true",
                                    striped: true, // 是否显示行间隔色
@@ -141,25 +143,19 @@
                                    columns: [{
                                        field: 'orderNumber',
                                        title: '订单号码'
-                                   },
-                                   {
+                                   }, {
                                        field: 'createPerson',
                                        title: 'openid'
-                                   },
-                                   {
+                                   }, {
                                        field: 'userName',
                                        title: '用户姓名'
-                                   },
-                                   {
+                                   }, {
                                        field: 'userPhone',
                                        title: '手机号码'
-                                   },
-                                   {
+                                   }, {
                                        field: 'orderCanSend',
                                        title: '状态',
-                                   }
-                                   ,
-                                   {
+                                   }, {
                                        field: 'createTime',
                                        title: '创建时间',
                                        formatter: function (value, row, index) {
@@ -177,11 +173,16 @@
     }
 
     $('#searchOrder').on('click',function (e) {
-        var orderNumber = $('#orderNumber').val();
-        var userPhone = $('#userPhone').val();
-        var userName = $('#userName').val();
-        var userOpenid = $('#userOpenid').val();
-    })
+        // var orderNumber = $('#orderNumber').val();
+        // var userPhone = $('#userPhone').val();
+        // var userName = $('#userName').val();
+        // var userOpenid = $('#userOpenid').val();
+
+        myTab.bootstrapTable('refresh', {
+            query: $("#conditionForm").serializeObject()
+        });
+    });
+
 
 </script>
 
