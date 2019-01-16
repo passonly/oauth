@@ -48,10 +48,16 @@ public class WxController {
     @Autowired
     private UserService userService;
 
+//    @RequestMapping("/")
+//    public void root(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//
+//        response.sendRedirect("http://"+Constants.URL+"/MP_verify_IQ071dRr6uE19t50.txt\"");
+//    }
+
     @RequestMapping("/")
     public void root(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        response.sendRedirect("http://"+Constants.URL+"/MP_verify_IQ071dRr6uE19t50.txt\"");
+        response.sendRedirect("http://"+Constants.URL+"/userlist.html\"");
     }
 
     @RequestMapping("/getAccessToken")
