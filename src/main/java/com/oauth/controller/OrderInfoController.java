@@ -38,6 +38,7 @@ public class OrderInfoController {
     public void checkOrder(HttpServletRequest request, HttpServletResponse response,OrderInfo orderInfo){
 
         String userphone = WXUtil.getCookie(request, response, "userphone");
+        String userOpenid = WXUtil.getCookie(request, response, "user_openid");
         List<OrderInfo> orderInfos = orderInfoService.selectByEntity(0, 10, orderInfo);
         if (orderInfos.size() > 1){
             try {
@@ -55,6 +56,7 @@ public class OrderInfoController {
         }
         orderInfo = orderInfos.get(0);
         orderInfo.setOrderCanSend("1");
+        orderInfo.setUserOpenid(userOpenid);
         orderInfoService.update(orderInfo);
 
     }

@@ -80,7 +80,7 @@
 				<div class="col-sm-6">
 					<label for="userOpenid" class="col-sm-2 control-label">openid</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" name="userOpenid" id="userOpenid" placeholder="openid">
+						<input type="text" class="form-control" name="userOpenid" id="userOpenid" placeholder="openid">
 					</div>
 				</div>
 				<div class="col-sm-6">
@@ -95,7 +95,7 @@
 					<div class="col-sm-6"></div>
 					<div class="col-sm-6">
 						<div class="col-sm-offset-9 col-sm-3">
-							<button type="button" class="btn btn-primary btn-block btn-lg">查询</button>
+							<button type="button" id="searchOrder" class="btn btn-primary btn-block btn-lg">查询</button>
 						</div>
 					</div>
 
@@ -118,7 +118,8 @@
          //        window.open("http://www.baidu.com");
 		// 	});
 		// });
-        $('#mytab').bootstrapTable({
+        var myTab = $('#mytab');
+        myTab.bootstrapTable({
                                        url: '/user/getList?currentPage=1&pageSize=1000',
                                        queryParams: $("#conditionForm").serializeObject(),
                                        toolbar: "#toolbar",

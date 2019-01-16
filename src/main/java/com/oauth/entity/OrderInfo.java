@@ -24,6 +24,7 @@ public class OrderInfo {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private String createPerson;
+    private String userOpenid;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date   updateTime;
@@ -133,5 +134,13 @@ public class OrderInfo {
 
     public void setUserPhone(String userPhone) {
         this.userPhone = userPhone;
+    }
+
+    public String getUserOpenid() {
+        return userOpenid;
+    }
+
+    public void setUserOpenid(String userOpenid) {
+        this.userOpenid = userOpenid;
     }
 }

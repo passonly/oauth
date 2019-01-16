@@ -5,7 +5,7 @@
 
     <select id="selectByEntity" resultType="com.oauth.entity.OrderInfo" parameterType="com.oauth.entity.OrderInfo">
         select o.*,u.user_name,u.user_phone from orderinfo o
-        LEFT  JOIN `user` u ON  o.create_person = u.user_openid
+        LEFT  JOIN `user` u ON  o.user_openid = u.user_openid
         <where>
             <if test=" orderId !=null and orderId !='' ">AND o.order_id =#{ orderId }</if>
             <if test=" orderNumber !=null and orderNumber !='' ">AND o.order_number =#{ orderNumber }</if>
@@ -18,7 +18,9 @@
             <if test=" createPerson !=null and createPerson !='' ">AND o.create_person =#{ createPerson }</if>
             <if test=" updateTime !=null and updateTime !='' ">AND o.update_time =#{ updateTime }</if>
             <if test=" updatePerson !=null and updatePerson !='' ">AND o.update_person =#{ updatePerson }</if>
-
+            <if test=" userName !=null and userName !='' ">AND u.user_name =#{ userName}</if>
+            <if test=" userPhone !=null and userPhone !='' ">AND u.user_phone =#{ userPhone}</if>
+            <if test=" userOpenid !=null and userOpenid !='' ">AND o.user_openid =#{ userOpenid}</if>
         </where>
     </select>
 
@@ -57,6 +59,9 @@
             <if test="orderCustomer != null" >
                 order_customer,
             </if>
+            <if test="userOpenid != null" >
+                user_Openid,
+            </if>
             <if test="createTime != null" >
                 create_time,
             </if>
@@ -91,6 +96,9 @@
             </if>
             <if test="orderCustomer != null" >
                 #{orderCustomer,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userOpenid != null" >
+                #{userOpenid,jdbcType=varchar},
             </if>
             <if test="createTime != null" >
                 #{createTime,jdbcType=VARCHAR},
