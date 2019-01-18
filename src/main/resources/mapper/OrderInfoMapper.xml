@@ -135,6 +135,7 @@
         order_can_send = #{orderCanSend,jdbcType=INTEGER},
         order_is_send = #{orderIsSend,jdbcType=TIMESTAMP},
         order_customer = #{orderCustomer,jdbcType=VARCHAR},
+        user_openid = #{userOpenid,jdbcType=VARCHAR},
         create_time = #{createTime,jdbcType=TIMESTAMP},
         create_person = #{createPerson,jdbcType=VARCHAR}
         update_time = #{updateTime,jdbcType=VARCHAR}
