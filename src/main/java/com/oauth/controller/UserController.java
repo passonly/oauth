@@ -48,7 +48,8 @@ public class UserController {
             response.addCookie(cookie);
         }
         try {
-            response.sendRedirect("http://"+ Constants.URL+"/queryuser.html");
+//            response.sendRedirect("http://"+ Constants.URL+"/queryuser.html");
+            response.sendRedirect("/queryuser.html");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,9 +65,11 @@ public class UserController {
         String userphone = WXUtil.getCookie(request, response, "userphone");
         try {
             if ( userphone != null && !"".equals(userphone)) {
-                response.sendRedirect("http://" + Constants.URL + "/queryuser.html");
+//                response.sendRedirect("http://" + Constants.URL + "/queryuser.html");
+                response.sendRedirect("/queryuser.html");
             } else {
-                response.sendRedirect("http://" + Constants.URL + "/login.html");
+//                response.sendRedirect("http://" + Constants.URL + "/login.html");
+                response.sendRedirect("/masterlogin.html");
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -48,7 +48,7 @@ public class MessageController {
 //        messageTemplate.setTouser("olyFc1CdGLBWWkhkfZoevCnWM1Hc");
         messageTemplate.setTouser(openid);
         messageTemplate.setTemplate_id("Wu550N9kIrl6K_OLrd4NUiGRZzgFxeoSBBYeKmIyQIs");
-        messageTemplate.setUrl("http://"+Constants.URL+"/confirm.html");
+        messageTemplate.setUrl("http://"+Constants.URL+"/check.html");
         MessageData messageData = new MessageData();
         MessageFont first = new MessageFont();
         first.setValue("汇尚合会员卡号填写");

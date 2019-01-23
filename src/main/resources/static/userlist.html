@@ -1,191 +1,233 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>会员用户查询</title>
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>会员用户查询</title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
 
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<style>
-		main{
-			margin-top:30px;
-		}
-		.page{
-			height:34px;
-			text-align: center;
-			margin:30px 0;
-		}
-		nav{
-			display: inline-block;
-		}
-		.pagination{
-			float:left;
-			margin:0;
-		}
-		.pagination li.elip a{
-			background:none;
-			border:none;
-			cursor:default;
-			outline: none;
-		}
-		.goto{
-			margin-left:20px;
-			float:left;
-			vertical-align: middle;
-			color:#999;
-			display: inline-block;
-		}
-		.goto input{
-			width:34px;
-			height:34px;
-			padding:0 3px;
-			border: 1px solid #ccc;
-		}
-		.goto .btn{
-			margin-left:20px;
-		}
-		@media (max-width:768px){
-			.page{
-				display: none;
-			}
-		}
-	</style>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        main {
+            margin-top: 30px;
+        }
+
+        .page {
+            height: 34px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        nav {
+            display: inline-block;
+        }
+
+        .pagination {
+            float: left;
+            margin: 0;
+        }
+
+        .pagination li.elip a {
+            background: none;
+            border: none;
+            cursor: default;
+            outline: none;
+        }
+
+        .goto {
+            margin-left: 20px;
+            float: left;
+            vertical-align: middle;
+            color: #999;
+            display: inline-block;
+        }
+
+        .goto input {
+            width: 34px;
+            height: 34px;
+            padding: 0 3px;
+            border: 1px solid #ccc;
+        }
+
+        .goto .btn {
+            margin-left: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .page {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
+<div class='container' style="margin-top:100px">
+    <div class="form-group">
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-offset-9 col-sm-3">
+                <!--<button type="button" id="searchOrder2"-->
+                        <!--class="btn btn-primary btn-block btn-lg">查询-->
+                <!--</button>-->
+                <a href="/order/queryorder"><h5>跳转至订单查询</h5></a>
+            </div>
+        </div>
+    </div>
+</div>
 
-	<h2 style="margin-top:170px;text-align:center"  >会员用户查询</h2>
-	<main style="margin-top:100px">
-		<div class='container'>
-			<form id="conditionForm" class="form-horizontal row">
-			  <div class="form-group">
 
-				  <div class="col-sm-6">
-					  <label for="userName" class="col-sm-2 control-label">姓名</label>
-					  <div class="col-sm-10">
-						  <input type="email" class="form-control" name="userName" id="userName" placeholder="姓名">
-					  </div>
-				  </div>
-				  <div class="col-sm-6">
-					  <label for="userNickName" class="col-sm-2 control-label">昵称</label>
-					  <div class="col-sm-10">
-						  <input type="email" class="form-control" name="userNickName" id="userNickName" placeholder="昵称">
-					  </div>
-				  </div>
-			  </div>
-			  <div class="form-group">
+<h2 style="margin-top:0px;text-align:center">会员用户查询</h2>
 
-				<div class="col-sm-6">
-					<label for="userOpenid" class="col-sm-2 control-label">openid</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="userOpenid" id="userOpenid" placeholder="openid">
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<label for="userPhone" class="col-sm-2 control-label">手机号码</label>
-					<div class="col-sm-10">
-						<input type="email" class="form-control" name="userPhone" id="userPhone" placeholder="手机号码">
-					</div>
-				</div>
-			</div>
+<main style="margin-top:100px">
 
-				<div class="form-group">
-					<div class="col-sm-6"></div>
-					<div class="col-sm-6">
-						<div class="col-sm-offset-9 col-sm-3">
-							<button type="button" id="searchOrder" class="btn btn-primary btn-block btn-lg">查询</button>
-						</div>
-					</div>
+    <div class='container'>
 
-				</div>
-			</form>
 
-			<table id="mytab"  class="table table-hover"></table>
+        <form id="conditionForm" class="form-horizontal row">
+            <div class="form-group">
 
-		</div>	
-	</main>
+                <div class="col-sm-6">
+                    <label for="userName" class="col-sm-2 control-label">姓名</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" name="userName" id="userName"
+                               placeholder="姓名">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="userNickName" class="col-sm-2 control-label">昵称</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" name="userNickName"
+                               id="userNickName" placeholder="昵称">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
 
- 	<script src="js/jquery-1.11.3.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/bootstrap-table.js"></script>
-	<script src="js/bootstrap-table-zh-CN.js"></script>
-	<script src="js/my.js"></script>
-	<script>
-		// $(document).ready(function(){
-		//     $(".table").on("click","tr",function(){
-         //        window.open("http://www.baidu.com");
-		// 	});
-		// });
-        var myTab = $('#mytab');
-        myTab.bootstrapTable({
-                                       url: '/user/getList?currentPage=1&pageSize=1000',
-                                       queryParams: $("#conditionForm").serializeObject(),
-                                       toolbar: "#toolbar",
-                                       sidePagination: "true",
-                                       striped: true, // 是否显示行间隔色
-                                       //search : "true",
-                                       uniqueId: "ID",
-                                       pageSize: "10",
-                                       pagination: true, // 是否分页
-                                       sortable: true, // 是否启用排序
-                                       columns: [ {
-                                               field: 'userName',
-                                               title: '姓名'
-                                           },
-                                           {
-                                               field: 'userNickName',
-                                               title: '昵称'
-                                           },
-                                           {
-                                               field: 'userPhone',
-                                               title: '手机'
-                                           },
-                                           {
-                                               field: 'userOpenid',
-                                               title: 'openid'
-                                           },
-                                           {
-                                               field: 'userOpenid',
-                                               title: '操作',
-                                               width: 120,
-                                               align: 'center',
-                                               valign: 'middle',
-                                               formatter: actionFormatter
-                                           },
-                                       ]
-                                   });
-        //操作栏的格式化
-        function actionFormatter(value, row, index) {
-            var id = value;
-            var result = "";
-            // result = "www.baidu.com";
-            // result += "<a href='javascript:;' class='btn btn-xs green' onclick=\"EditViewById('" + id + "', view='view')\" title='查看'><span class='glyphicon glyphicon-search'></span></a>";
-            // result += "<a href='javascript:;' class='btn btn-xs blue' onclick=\"EditViewById('" + id + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></ a>";
-            result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"sendMessage('" + id + "')\" title='发送信息'><span >发送信息</span></ a>";
-            // result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"DeleteByIds('" + id + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></ a>";
-            return result;
-        }
+                <div class="col-sm-6">
+                    <label for="userOpenid" class="col-sm-2 control-label">openid</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="userOpenid" id="userOpenid"
+                               placeholder="openid">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="userPhone" class="col-sm-2 control-label">手机号码</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" name="userPhone" id="userPhone"
+                               placeholder="手机号码">
+                    </div>
+                </div>
+            </div>
 
-        function sendMessage(userOpenid) {
-            var open = window.open("http://www.huishanghe.xyz/sendMessage/sendTemplateMessage/" + userOpenid);
-            alert(open)
-			// alert(userOpenid)
-        }
+            <div class="form-group">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-sm-offset-9 col-sm-3">
+                        <button type="button" id="searchOrder"
+                                class="btn btn-primary btn-block btn-lg">查询
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
 
-        $('#searchOrder').on('click',function (e) {
-            // var orderNumber = $('#orderNumber').val();
-            // var userPhone = $('#userPhone').val();
-            // var userName = $('#userName').val();
-            // var userOpenid = $('#userOpenid').val();
 
-            myTab.bootstrapTable('refresh', {
-                query: $("#conditionForm").serializeObject()
-            });
+        <table id="mytab" class="table table-hover"></table>
+
+    </div>
+</main>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/bootstrap-table.js"></script>
+<script src="js/bootstrap-table-zh-CN.js"></script>
+<script src="js/my.js"></script>
+<script>
+    // $(document).ready(function(){
+    //     $(".table").on("click","tr",function(){
+    //        window.open("http://www.baidu.com");
+    // 	});
+    // });
+    c_start=document.cookie.indexOf("user_openid=");
+    if(c_start == -1){
+       window.location.href = "http://www.baidu.com"
+    }
+    var myTab = $('#mytab');
+    myTab.bootstrapTable({
+                             url: '/user/getList?currentPage=1&pageSize=1000',
+                             queryParams: $("#conditionForm").serializeObject(),
+                             toolbar: "#toolbar",
+                             sidePagination: "true",
+                             striped: true, // 是否显示行间隔色
+                             //search : "true",
+                             uniqueId: "ID",
+                             pageSize: "10",
+                             pagination: true, // 是否分页
+                             sortable: true, // 是否启用排序
+                             columns: [{
+                                 field: 'userName',
+                                 title: '姓名'
+                             },
+                                 {
+                                     field: 'userNickName',
+                                     title: '昵称'
+                                 },
+                                 {
+                                     field: 'userPhone',
+                                     title: '手机'
+                                 },
+                                 {
+                                     field: 'userOpenid',
+                                     title: 'openid'
+                                 },
+                                 {
+                                     field: 'userOpenid',
+                                     title: '操作',
+                                     width: 120,
+                                     align: 'center',
+                                     valign: 'middle',
+                                     formatter: actionFormatter
+                                 },
+                             ]
+                         });
+
+    //操作栏的格式化
+    function actionFormatter(value, row, index) {
+        var id = value;
+        var result = "";
+        // result = "www.baidu.com";
+        // result += "<a href='javascript:;' class='btn btn-xs green' onclick=\"EditViewById('" + id + "', view='view')\" title='查看'><span class='glyphicon glyphicon-search'></span></a>";
+        // result += "<a href='javascript:;' class='btn btn-xs blue' onclick=\"EditViewById('" + id + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></ a>";
+        result +=
+            "<a href='javascript:;' class='btn btn-xs red' onclick=\"sendMessage('" + id
+            + "')\" title='发送信息'><span >发送信息</span></ a>";
+        // result += "<a href='javascript:;' class='btn btn-xs red' onclick=\"DeleteByIds('" + id + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></ a>";
+        return result;
+    }
+
+    function sendMessage(userOpenid) {
+        var open = window.open("http://www.huishanghe.xyz/sendMessage/sendTemplateMessage/"
+                               + userOpenid);
+        alert(open)
+        // alert(userOpenid)
+    }
+
+    $('#searchOrder').on('click', function (e) {
+        // var orderNumber = $('#orderNumber').val();
+        // var userPhone = $('#userPhone').val();
+        // var userName = $('#userName').val();
+        // var userOpenid = $('#userOpenid').val();
+
+        myTab.bootstrapTable('refresh', {
+            query: $("#conditionForm").serializeObject()
         });
+    });
 
-	</script>
+</script>
 
 </body>
 </html>

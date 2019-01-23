@@ -71,9 +71,11 @@ public class OrderInfoController {
         String userphone = WXUtil.getCookie(request, response, "userphone");
         try {
             if ( userphone != null && !"".equals(userphone)) {
-                response.sendRedirect("http://" + Constants.URL + "/queryorder.html");
+//                response.sendRedirect("http://" + Constants.URL + "/queryorder.html");
+                response.sendRedirect("/queryorder.html");
             } else {
-                response.sendRedirect("http://" + Constants.URL + "/login.html");
+//                response.sendRedirect("http://" + Constants.URL + "/login.html");
+                response.sendRedirect("/masterlogin.html");
             }
         } catch (IOException e) {
             e.printStackTrace();
