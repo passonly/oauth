@@ -63,22 +63,21 @@
     </style>
 </head>
 <body>
-<div class='container' style="margin-top:100px">
+<div class='container' style="margin-top:50px">
     <div class="form-group">
         <div class="col-sm-6">
         </div>
         <div class="col-sm-6">
             <div class="col-sm-offset-9 col-sm-3">
-                <!--<button type="button" id="searchOrder2"-->
-                <!--class="btn btn-primary btn-block btn-lg">查询-->
-                <!--</button>-->
-                <a href="/user/queryorder"><h5>跳转至用户查询</h5></a>
+                <a href="/user/queryuser"><h5>跳转至用户查询</h5></a>
+
+                <a href="/signout"><h5>退出登录</h5></a>
             </div>
         </div>
     </div>
 </div>
-<h2 style="margin-top:170px;text-align:center">订单查询</h2>
-<main style="margin-top:50px">
+<h2 style="margin-top:00px;text-align:center">订单查询</h2>
+<main style="margin-top:120px">
     <div class='container'>
         <form id="conditionForm" class="form-horizontal row">
             <div class="form-group">
@@ -140,11 +139,13 @@
     //     $(".table").on("click","tr",function(){
     //        window.open("http://www.baidu.com");
     // 	});
-    // });
-
-    c_start=document.cookie.indexOf("user_openid=");
+    // });user_openid
+    c_start=document.cookie.indexOf("user_openid");
+    // c_start=document.cookie.split(";")[0];
+    // var aa = c_start[0].split("=")[1]
+    alert(c_start)
     if(c_start == -1){
-        window.location.href = "http://www.baidu.com"
+        window.location.href = "/user/masterLogin"
     }
     var myTab = $('#mytab');
     myTab.bootstrapTable({

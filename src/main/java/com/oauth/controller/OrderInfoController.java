@@ -5,6 +5,7 @@ import com.oauth.entity.OrderInfo;
 import com.oauth.entity.User;
 import com.oauth.service.OrderInfoService;
 import com.oauth.utils.WXUtil;
+import com.oauth.vo.R;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,21 +36,38 @@ public class OrderInfoController {
      * @return
      */
     @RequestMapping("/checkOrder")
-    public void checkOrder(HttpServletRequest request, HttpServletResponse response,OrderInfo orderInfo){
+    public R checkOrder(HttpServletRequest request, HttpServletResponse response, OrderInfo orderInfo) {
 
-        String userphone = WXUtil.getCookie(request, response, "userphone");
+//        String userphone = WXUtil.getCookie(request, response, "userphone");
         String userOpenid = WXUtil.getCookie(request, response, "user_openid");
-        List<OrderInfo> orderInfos = orderInfoService.selectByEntity(0, 10, orderInfo);
-        if (orderInfos.size() > 1){
+        if (userOpenid == null || "".equals(userOpenid)){
             try {
-                throw new Exception("订单号不唯一");
+                response.sendRedirect("/authorize");
+                return R.error("请进行微信登录验证");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        List<OrderInfo> orderInfos = null;
+        if (orderInfo.getOrderNumber() != null
+                && !"".equals(orderInfo.getOrderNumber())
+                && orderInfo.getOrderSercet() != null
+                && !"".equals(orderInfo.getOrderSercet())) {
+            orderInfos = orderInfoService.selectByEntity(0, 10, orderInfo);
+        }
+        if (orderInfos.size() > 1) {
+            try {
+//                throw new Exception("订单号不唯一");
+                return R.error("订单号不唯一");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        if (orderInfos.size() == 0){
+        if (orderInfos == null || orderInfos.size() == 0) {
             try {
-                throw new Exception("订单号不存在");
+                return R.error("订单号不存在");
+//                throw new Exception("订单号不存在");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -58,7 +76,7 @@ public class OrderInfoController {
         orderInfo.setOrderCanSend("1");
         orderInfo.setUserOpenid(userOpenid);
         orderInfoService.update(orderInfo);
-
+        return R.ok();
     }
 
     /**
@@ -66,13 +84,13 @@ public class OrderInfoController {
      * @return
      */
     @RequestMapping("/queryorder")
-    public void queryuser(HttpServletRequest request, HttpServletResponse response){
+    public void queryuser(HttpServletRequest request, HttpServletResponse response) {
 
-        String userphone = WXUtil.getCookie(request, response, "userphone");
+        String userphone = WXUtil.getCookie(request, response, "user_openid");
         try {
-            if ( userphone != null && !"".equals(userphone)) {
+            if (userphone != null && !"".equals(userphone)) {
 //                response.sendRedirect("http://" + Constants.URL + "/queryorder.html");
-                response.sendRedirect("/queryorder.html");
+                response.sendRedirect("/orderlist.html");
             } else {
 //                response.sendRedirect("http://" + Constants.URL + "/login.html");
                 response.sendRedirect("/masterlogin.html");
@@ -87,9 +105,9 @@ public class OrderInfoController {
      * @return
      */
     @RequestMapping("/getList")
-    public List<OrderInfo> getList(int currentPage,int pageSize,OrderInfo orderInfo){
+    public List<OrderInfo> getList(int currentPage, int pageSize, OrderInfo orderInfo) {
 //        orderInfo.setCreatePerson("2");
-        List<OrderInfo> orderInfos = orderInfoService.selectByEntity(currentPage, pageSize,orderInfo);
+        List<OrderInfo> orderInfos = orderInfoService.selectByEntity(currentPage, pageSize, orderInfo);
         return orderInfos;
     }
 
@@ -98,7 +116,7 @@ public class OrderInfoController {
      * @return
      */
     @RequestMapping("/insert")
-    public void insertOrder(OrderInfo orderInfo){
+    public void insertOrder(OrderInfo orderInfo) {
         orderInfo.setOrderId(UUID.randomUUID().toString());
         orderInfo.setCreateTime(new Date());
         orderInfo.setUpdateTime(new Date());
@@ -110,9 +128,9 @@ public class OrderInfoController {
      * @return
      */
     @RequestMapping("/selectById")
-    public OrderInfo selectByPrimaryKey(String id){
+    public OrderInfo selectByPrimaryKey(String id) {
 
-       return  orderInfoService.selectByPrimaryKey(id);
+        return orderInfoService.selectByPrimaryKey(id);
     }
 
     /**
@@ -120,7 +138,7 @@ public class OrderInfoController {
      * @return
      */
     @RequestMapping("/update")
-    public void upate(OrderInfo orderInfo){
+    public void upate(OrderInfo orderInfo) {
         orderInfoService.update(orderInfo);
     }
 

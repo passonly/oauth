@@ -3,6 +3,7 @@ package com.oauth.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,9 +21,11 @@ import java.util.UUID;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.alibaba.fastjson.JSON;
 import com.oauth.constant.Constants;
 import com.oauth.entity.User;
@@ -43,7 +46,7 @@ import com.oauth.vo.R;
 @RestController
 public class WxController {
 
-    private static  Logger log = LoggerFactory.getLogger(WxController.class);
+    private static Logger log = LoggerFactory.getLogger(WxController.class);
 
     @Autowired
     private UserService userService;
@@ -57,12 +60,23 @@ public class WxController {
     @RequestMapping("/")
     public void root(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        response.sendRedirect("http://"+Constants.URL+"/userlist.html\"");
+        response.sendRedirect("http://" + Constants.URL + "/orderlist.html");
     }
+
+    @RequestMapping("/signout")
+    public void signout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        Cookie cookie = new Cookie("user_openid", null);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        response.sendRedirect("/masterLogin.html");
+    }
+
 
     @RequestMapping("/getAccessToken")
     public String getAccessToken(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String access_token = WXUtil.getAccessToken(request,response);
+        String access_token = WXUtil.getAccessToken(request, response);
         return access_token;
     }
 
@@ -87,11 +101,9 @@ public class WxController {
     }
 
 
-
     /**
      * 向指定URL发送GET方法的请求
      *
-     * @param ，发送请求url
      * @param ，请求参数应该是 name1=value1&name2=value2 的形式。
      * @return URL 所代表远程资源的响应结果
      *
@@ -102,13 +114,13 @@ public class WxController {
     public static void authorize(HttpServletRequest request, HttpServletResponse response) {
         String appid = Constants.APPID;
         //String uri ="wftest.zzff.net/wx/weixinLogin";
-        String uri = urlEncodeUTF8("http://"+Constants.URL+"/login.html");
+        String uri = urlEncodeUTF8("http://" + Constants.URL + "/login.html");
 //        String result = "";
 //        BufferedReader in = null;
 //        try {
         //如果cookie中有用户数据，直接跳转到注册成功页面
-        String url = "http://"+Constants.URL+"/auth.html";
-        String urlNameString = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+uri+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+        String url = "http://" + Constants.URL + "/auth.html";
+        String urlNameString = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appid + "&redirect_uri=" + uri + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 
         boolean flag = false;
         Cookie[] cookies = request.getCookies();
@@ -132,7 +144,7 @@ public class WxController {
             }
         }
         //如果没有用户信息，则去注册，有则跳转到注册成功页面
-        if ( flag){
+        if (flag) {
             try {
                 response.sendRedirect(url);
                 return;
@@ -192,34 +204,34 @@ public class WxController {
 
     @RequestMapping("/weixinLogin")
     @ResponseBody
-    public void weixinLogin(HttpServletRequest request,HttpServletResponse response,String code,String userPhone,String userName) throws Exception {
+    public void weixinLogin(HttpServletRequest request, HttpServletResponse response, String code, String userPhone, String userName) throws Exception {
 //        // 用户同意授权后，能获取到code
 //        Map<String, String[]> params = request.getParameterMap();//针对get获取get参数
 //        String[] codes = params.get("code");//拿到code的值
 //        String code = codes[0];//code
 
-        System.out.println("****************code:"+code);
+        System.out.println("****************code:" + code);
         // 用户同意授权
         if (!"authdeny".equals(code)) {
             // 获取网页授权access_token
             Oauth2Token oauth2Token = getOauth2AccessToken(Constants.APPID, Constants.APPSERECT, code);
-            System.out.println("***********************************oauth2Token信息："+oauth2Token.toString());
+            System.out.println("***********************************oauth2Token信息：" + oauth2Token.toString());
             // 网页授权接口访问凭证
             String accessToken = oauth2Token.getAccessToken();
             // 用户标识
             String openId = oauth2Token.getOpenId();
             // 获取用户信息
             SNSUserInfo snsUserInfo = getSNSUserInfo(accessToken, openId);
-            System.out.println("openid:"+openId);
-            System.out.println("accessToken:"+accessToken);
-            System.out.println("***********************************用户信息unionId："+snsUserInfo.getUnionid()+"***:"+snsUserInfo.getNickname());
+            System.out.println("openid:" + openId);
+            System.out.println("accessToken:" + accessToken);
+            System.out.println("***********************************用户信息unionId：" + snsUserInfo.getUnionid() + "***:" + snsUserInfo.getNickname());
 
             //根据openid查询用户
             User user = null;
             user = userService.selectByPrimaryKey(openId);
 
             //保存用户到数据库
-            if ( user == null) {
+            if (user == null) {
                 user = new User();
                 user.setUserId(UUID.randomUUID().toString());
                 user.setUserOpenid(openId);
@@ -231,16 +243,16 @@ public class WxController {
                 user.setUserCity(snsUserInfo.getCity());
                 user.setUserPassword("");
                 user.setUserPhone(userPhone);
-                user.setUserSex(snsUserInfo.getSex()+"");
+                user.setUserSex(snsUserInfo.getSex() + "");
                 user.setUserStatus("0");
 
                 userService.insert(user);
             }
             //保存用户信息openid到cookie
-            Cookie cookie = new Cookie("user_openid",openId);
+            Cookie cookie = new Cookie("user_openid", openId);
             response.addCookie(cookie);
 
-            String url = "http://"+Constants.URL+"/auth.html";
+            String url = "http://" + Constants.URL + "/auth.html";
             response.sendRedirect(url);
         }
     }
@@ -248,9 +260,8 @@ public class WxController {
     /**
      * 获取网页授权凭证
      *
-     * @param appId 公众账号的唯一标识
+     * @param appId     公众账号的唯一标识
      * @param appSecret 公众账号的密钥
-     * @param code
      * @return WeixinAouth2Token
      */
     public static Oauth2Token getOauth2AccessToken(String appId, String appSecret, String code) {
@@ -286,7 +297,7 @@ public class WxController {
      * 通过网页授权获取用户信息
      *
      * @param accessToken 网页授权接口调用凭证
-     * @param openId 用户标识
+     * @param openId      用户标识
      * @return SNSUserInfo
      */
     public static SNSUserInfo getSNSUserInfo(String accessToken, String openId) {
@@ -295,7 +306,7 @@ public class WxController {
         String requestUrl = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID";
         requestUrl = requestUrl.replace("ACCESS_TOKEN", accessToken).replace("OPENID", openId);
         // 通过网页授权获取用户信息
-        com.alibaba.fastjson.JSONObject jsonObject =  JSON.parseObject(NetUtil.get(requestUrl));
+        com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(NetUtil.get(requestUrl));
 
         if (null != jsonObject) {
             try {
@@ -315,7 +326,7 @@ public class WxController {
                 // 用户头像
                 snsUserInfo.setHeadImgUrl(jsonObject.getString("headimgurl"));
                 // 用户特权信息
-                List<String> list = JSON.parseArray(jsonObject.getString("privilege"),String.class);
+                List<String> list = JSON.parseArray(jsonObject.getString("privilege"), String.class);
                 snsUserInfo.setPrivilegeList(list);
                 //与开放平台共用的唯一标识，只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。
                 snsUserInfo.setUnionid(jsonObject.getString("unionid"));
@@ -331,9 +342,6 @@ public class WxController {
 
     /**
      * URL编码（utf-8）
-     *
-     * @param source
-     * @return
      */
     public static String urlEncodeUTF8(String source) {
         String result = source;
@@ -347,8 +355,7 @@ public class WxController {
 
     private static String byteToHex(final byte[] hash) {
         Formatter formatter = new Formatter();
-        for (byte b : hash)
-        {
+        for (byte b : hash) {
             formatter.format("%02x", b);
         }
         String result = formatter.toString();

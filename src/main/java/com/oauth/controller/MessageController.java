@@ -47,7 +47,7 @@ public class MessageController {
         MessageTemplate messageTemplate = new MessageTemplate();
 //        messageTemplate.setTouser("olyFc1CdGLBWWkhkfZoevCnWM1Hc");
         messageTemplate.setTouser(openid);
-        messageTemplate.setTemplate_id("Wu550N9kIrl6K_OLrd4NUiGRZzgFxeoSBBYeKmIyQIs");
+        messageTemplate.setTemplate_id(Constants.TEMPLATEID);
         messageTemplate.setUrl("http://"+Constants.URL+"/check.html");
         MessageData messageData = new MessageData();
         MessageFont first = new MessageFont();

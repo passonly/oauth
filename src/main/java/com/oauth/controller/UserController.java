@@ -1,10 +1,6 @@
 package com.oauth.controller;
 
-import com.oauth.constant.Constants;
-import com.oauth.entity.OrderInfo;
 import com.oauth.entity.User;
-import com.oauth.entity.User;
-import com.oauth.service.UserService;
 import com.oauth.service.UserService;
 import com.oauth.utils.WXUtil;
 
@@ -38,18 +34,25 @@ public class UserController {
      * @return
      */
     @RequestMapping("/masterLogin")
-    public void masterLogin(HttpServletRequest request, HttpServletResponse response,User user){
-        user.setUserName("ddd");
-        user.setUserOpenid("2");
-        user.setUserPassword("2");
-        List<User> users = userService.selectByEntity(user);
-        if (user != null){
-            Cookie cookie = new Cookie("userphone", users.get(0).getUserPhone());
-            response.addCookie(cookie);
-        }
+    public void masterLogin(HttpServletRequest request, HttpServletResponse response, User user) {
+        List<User> users = null;
         try {
-//            response.sendRedirect("http://"+ Constants.URL+"/queryuser.html");
-            response.sendRedirect("/queryuser.html");
+            if (user != null
+                    && user.getUserPhone() != null
+                    && !"".equals(user.getUserPhone())
+                    && user.getUserPassword() != null
+                    && !"".equals(user.getUserPassword())) {
+                users = userService.selectByEntity(user);
+            }
+            if (users != null && users.size() != 0) {
+                Cookie cookie = new Cookie("user_openid", users.get(0).getUserPhone());
+//            cookie.setDomain("localhost");
+                cookie.setPath("/");
+                response.addCookie(cookie);
+                response.sendRedirect("/orderlist.html");
+            } else {
+                response.sendRedirect("/masterLogin.html");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -60,13 +63,13 @@ public class UserController {
      * @return
      */
     @RequestMapping("/queryuser")
-    public void queryuser(HttpServletRequest request, HttpServletResponse response){
+    public void queryuser(HttpServletRequest request, HttpServletResponse response) {
 
-        String userphone = WXUtil.getCookie(request, response, "userphone");
+        String userphone = WXUtil.getCookie(request, response, "user_openid");
         try {
-            if ( userphone != null && !"".equals(userphone)) {
+            if (userphone != null && !"".equals(userphone)) {
 //                response.sendRedirect("http://" + Constants.URL + "/queryuser.html");
-                response.sendRedirect("/queryuser.html");
+                response.sendRedirect("/userlist.html");
             } else {
 //                response.sendRedirect("http://" + Constants.URL + "/login.html");
                 response.sendRedirect("/masterlogin.html");
@@ -82,10 +85,10 @@ public class UserController {
      * @return
      */
     @RequestMapping("/getList")
-    public List<User> getList(int currentPage,int pageSize,User user){
+    public List<User> getList(int currentPage, int pageSize, User user) {
 //        user.setUserName("ddd");
 //        user.setUserOpenid("2");
-        List<User> users = userService.selectByEntity(currentPage, pageSize,user);
+        List<User> users = userService.selectByEntity(currentPage, pageSize, user);
         return users;
     }
 
@@ -94,7 +97,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/insert")
-    public void insertOrder(User user){
+    public void insertOrder(User user) {
         user.setUserId(UUID.randomUUID().toString());
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
@@ -106,9 +109,9 @@ public class UserController {
      * @return
      */
     @RequestMapping("/selectById")
-    public User selectByPrimaryKey(String id){
+    public User selectByPrimaryKey(String id) {
 
-       return  userService.selectByPrimaryKey(id);
+        return userService.selectByPrimaryKey(id);
     }
 
     /**
@@ -116,7 +119,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/update")
-    public void upate(User user){
+    public void upate(User user) {
         userService.update(user);
     }
 }
