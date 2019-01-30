@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4594fa94-0ac3-491a-a4f8-f88a8c2b447e" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/success.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/controller/MessageController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/controller/MessageController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/controller/OrderInfoController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/controller/OrderInfoController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/controller/UserController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/service/OrderInfoService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/OrderInfoService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/service/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/UserService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/OrderInfoServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/OrderInfoServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/oauth/service/impl/UserServiceImpl.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/OrderInfoMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mapper/OrderInfoMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/aaa.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/auth.html" afterPath="$PROJECT_DIR$/src/main/resources/static/auth.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/check.html" afterPath="$PROJECT_DIR$/src/main/resources/static/check.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/login.html" afterPath="$PROJECT_DIR$/src/main/resources/static/login.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/orderlist.html" afterPath="$PROJECT_DIR$/src/main/resources/static/orderlist.html" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/userlist.html" afterPath="$PROJECT_DIR$/src/main/resources/static/userlist.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -658,7 +642,7 @@
       <workItem from="1547636475186" duration="161000" />
       <workItem from="1548213277356" duration="9815000" />
       <workItem from="1548730153865" duration="19027000" />
-      <workItem from="1548812020744" duration="19399000" />
+      <workItem from="1548812020744" duration="19416000" />
     </task>
     <task id="LOCAL-00001" summary="0108">
       <created>1546943878358</created>
@@ -793,11 +777,18 @@
       <option name="project" value="LOCAL" />
       <updated>1548755949454</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="01-30-01">
+      <created>1548846476117</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1548846476117</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189325000" />
+    <option name="totallyTimeSpent" value="189342000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -867,7 +858,8 @@
     <MESSAGE value="011502" />
     <MESSAGE value="01-23-01" />
     <MESSAGE value="01-29-01" />
-    <option name="LAST_COMMIT_MESSAGE" value="01-29-01" />
+    <MESSAGE value="01-30-01" />
+    <option name="LAST_COMMIT_MESSAGE" value="01-30-01" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
