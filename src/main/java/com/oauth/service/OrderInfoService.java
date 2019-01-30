@@ -1,6 +1,7 @@
 package com.oauth.service;
 
 import com.oauth.entity.OrderInfo;
+import com.oauth.entity.TableSplitResult;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public interface OrderInfoService {
 
-    List<OrderInfo> selectByEntity(int currentPage, int pageSize,OrderInfo orderInfo);
+    TableSplitResult<List<OrderInfo>> selectByEntity(int currentPage, int pageSize, OrderInfo orderInfo);
 
     void insert(OrderInfo orderInfo);
 

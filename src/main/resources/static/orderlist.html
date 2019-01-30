@@ -85,13 +85,15 @@
                 <div class="col-sm-6">
                     <label for="orderNumber" class="col-sm-2 control-label">订单号</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="orderNumber" name="orderNumber" placeholder="订单号">
+                        <input type="text" class="form-control" id="orderNumber" name="orderNumber"
+                               placeholder="订单号">
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <label for="userPhone" class="col-sm-2 control-label">电话号码</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="userPhone" name="userPhone" placeholder="电话号码">
+                        <input type="text" class="form-control" id="userPhone" name="userPhone"
+                               placeholder="电话号码">
                     </div>
                 </div>
             </div>
@@ -108,7 +110,8 @@
                 <div class="col-sm-6">
                     <label for="userOpenid" class="col-sm-2 control-label">openid</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="userOpenid" id="userOpenid" placeholder="openid">
+                        <input type="text" class="form-control" name="userOpenid" id="userOpenid"
+                               placeholder="openid">
                     </div>
                 </div>
             </div>
@@ -117,7 +120,9 @@
                 <div class="col-sm-6"></div>
                 <div class="col-sm-6">
                     <div class="col-sm-offset-9 col-sm-3">
-                        <button type="button" id="searchOrder" class="btn btn-primary btn-block btn-lg">查询</button>
+                        <button type="button" id="searchOrder"
+                                class="btn btn-primary btn-block btn-lg">查询
+                        </button>
                     </div>
                 </div>
 
@@ -140,58 +145,74 @@
     //        window.open("http://www.baidu.com");
     // 	});
     // });user_openid
-    c_start=document.cookie.indexOf("user_openid");
+    c_start = document.cookie.indexOf("user_openid");
     // c_start=document.cookie.split(";")[0];
     // var aa = c_start[0].split("=")[1]
-    alert(c_start)
-    if(c_start == -1){
+    // alert(c_start)
+    if (c_start == -1) {
         window.location.href = "/user/masterLogin"
     }
     var myTab = $('#mytab');
     myTab.bootstrapTable({
-                                   url: '/order/getList?currentPage=1&pageSize=1000',
-                                   queryParams: $("#conditionForm").serializeObject(),
-                                   toolbar: "#toolbar",
-                                   sidePagination: "true",
-                                   striped: true, // 是否显示行间隔色
-                                   //search : "true",
-                                   uniqueId: "ID",
-                                   pageSize: "10",
-                                   pagination: true, // 是否分页
-                                   sortable: true, // 是否启用排序
-                                   columns: [{
-                                       field: 'orderNumber',
-                                       title: '订单号码'
-                                   }, {
-                                       field: 'userOpenid',
-                                       title: 'openid'
-                                   }, {
-                                       field: 'userName',
-                                       title: '用户姓名'
-                                   }, {
-                                       field: 'userPhone',
-                                       title: '手机号码'
-                                   }, {
-                                       field: 'orderCanSend',
-                                       title: '状态',
-                                   }, {
-                                       field: 'createTime',
-                                       title: '创建时间',
-                                       formatter: function (value, row, index) {
-                                           return changeDateFormat(value)
-                                       }
-                                   }]
-                               });
+                             url: '/order/getList',
+                             // queryParams: $("#conditionForm").serializeObject(),
+                             queryParams: function queryParams(params) {
+                                 var temp = {  //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                                     pageNumber: params.pageNumber, //页码
+                                     pageSize: params.pageSize,  //页面大小
+                                     orderNumber: $("#orderNumber").val(),//后台请求传的查询参数
+                                     userPhone: $("#userPhone").val(),
+                                     userName: $("#userName").val(),
+                                     userOpenid: $("#userOpenid").val(),
+                                 };
+                                 return temp;
+                             },
+                             toolbar: "#toolbar",
+                             sidePagination: "server",
+                             queryParamsType: '',
+                             striped: true, // 是否显示行间隔色
+                             //search : "true",
+                             uniqueId: "ID",
+                             pageNumber: 1,
+                             pageSize: 10,
+                             pageList: [10, 20, 50, 100],
+                             pagination: true, // 是否分页
+                             sortable: true, // 是否启用排序
+                             columns: [{
+                                 field: 'orderNumber',
+                                 title: '订单号码'
+                             }, {
+                                 field: 'userOpenid',
+                                 title: 'openid'
+                             }, {
+                                 field: 'userName',
+                                 title: '用户姓名'
+                             }, {
+                                 field: 'userPhone',
+                                 title: '手机号码'
+                             }, {
+                                 field: 'orderCanSend',
+                                 title: '状态',
+                             }, {
+                                 field: 'createTime',
+                                 title: '创建时间',
+                                 formatter: function (value, row, index) {
+                                     return changeDateFormat(value)
+                                 }
+                             }]
+                         });
 
     //修改——转换日期格式(时间戳转换为datetime格式)
     function changeDateFormat(cellval) {
         if (cellval != null) {
-            var dateStr = cellval.substring(0,4) +"-" +cellval.substring(4,6) +"-" +cellval.substring(6,8) +" " +cellval.substring(8,10) +":" +cellval.substring(10,12) +":" +cellval.substring(12,14)
+            var dateStr = cellval.substring(0, 4) + "-" + cellval.substring(4, 6) + "-"
+                          + cellval.substring(6, 8) + " " + cellval.substring(8, 10) + ":"
+                          + cellval.substring(10, 12) + ":" + cellval.substring(12, 14)
             return dateStr;
         }
     }
 
-    $('#searchOrder').on('click',function (e) {
+    $('#searchOrder').on('click', function (e) {
         // var orderNumber = $('#orderNumber').val();
         // var userPhone = $('#userPhone').val();
         // var userName = $('#userName').val();

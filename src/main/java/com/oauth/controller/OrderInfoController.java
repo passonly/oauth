@@ -2,6 +2,7 @@ package com.oauth.controller;
 
 import com.oauth.constant.Constants;
 import com.oauth.entity.OrderInfo;
+import com.oauth.entity.TableSplitResult;
 import com.oauth.entity.User;
 import com.oauth.service.OrderInfoService;
 import com.oauth.utils.WXUtil;
@@ -38,7 +39,6 @@ public class OrderInfoController {
     @RequestMapping("/checkOrder")
     public R checkOrder(HttpServletRequest request, HttpServletResponse response, OrderInfo orderInfo) {
 
-//        String userphone = WXUtil.getCookie(request, response, "userphone");
         String userOpenid = WXUtil.getCookie(request, response, "user_openid");
         if (userOpenid == null || "".equals(userOpenid)){
             try {
@@ -54,9 +54,10 @@ public class OrderInfoController {
                 && !"".equals(orderInfo.getOrderNumber())
                 && orderInfo.getOrderSercet() != null
                 && !"".equals(orderInfo.getOrderSercet())) {
-            orderInfos = orderInfoService.selectByEntity(0, 10, orderInfo);
+            TableSplitResult<List<OrderInfo>> listTableSplitResult = orderInfoService.selectByEntity(0, 10, orderInfo);
+            orderInfos = listTableSplitResult.getRows();
         }
-        if (orderInfos.size() > 1) {
+        if (orderInfos != null && orderInfos.size() > 1) {
             try {
 //                throw new Exception("订单号不唯一");
                 return R.error("订单号不唯一");
@@ -105,9 +106,9 @@ public class OrderInfoController {
      * @return
      */
     @RequestMapping("/getList")
-    public List<OrderInfo> getList(int currentPage, int pageSize, OrderInfo orderInfo) {
+    public TableSplitResult<List<OrderInfo>> getList(int pageNumber, int pageSize, OrderInfo orderInfo) {
 //        orderInfo.setCreatePerson("2");
-        List<OrderInfo> orderInfos = orderInfoService.selectByEntity(currentPage, pageSize, orderInfo);
+        TableSplitResult<List<OrderInfo>> orderInfos = orderInfoService.selectByEntity(pageNumber, pageSize, orderInfo);
         return orderInfos;
     }
 

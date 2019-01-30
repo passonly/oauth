@@ -137,8 +137,8 @@
         order_customer = #{orderCustomer,jdbcType=VARCHAR},
         user_openid = #{userOpenid,jdbcType=VARCHAR},
         create_time = #{createTime,jdbcType=TIMESTAMP},
-        create_person = #{createPerson,jdbcType=VARCHAR}
-        update_time = #{updateTime,jdbcType=VARCHAR}
+        create_person = #{createPerson,jdbcType=VARCHAR},
+        update_time = #{updateTime,jdbcType=VARCHAR},
         update_person = #{updatePerson,jdbcType=VARCHAR}
         where order_id = #{orderId,jdbcType=INTEGER}
     </update>

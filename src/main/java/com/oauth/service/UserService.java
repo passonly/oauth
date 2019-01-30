@@ -1,5 +1,7 @@
 package com.oauth.service;
 
+import com.github.pagehelper.PageInfo;
+import com.oauth.entity.TableSplitResult;
 import com.oauth.entity.User;
 
 import java.util.List;
@@ -11,7 +13,8 @@ import java.util.List;
  */
 public interface UserService {
 
-    List<User> selectByEntity(int currentPage, int pageSize,User user);
+    //    List<User> selectByEntity(int currentPage, int pageSize,User user);
+    TableSplitResult<List<User>> selectByEntity(int currentPage, int pageSize, User user);
 
     List<User> selectByEntity(User user);
 

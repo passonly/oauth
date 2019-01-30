@@ -1,7 +1,9 @@
 package com.oauth.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.oauth.dao.UserMapper;
+import com.oauth.entity.TableSplitResult;
 import com.oauth.entity.User;
 import com.oauth.entity.PageBean;
 import com.oauth.service.UserService;
@@ -23,19 +25,27 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper UserMapper;
 
-    public List<User> selectByEntity(int currentPage, int pageSize,User user) {
+//    public List<User> selectByEntity(int currentPage, int pageSize,User user) {
+//
+//        //设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】
+//        PageHelper.startPage(currentPage, pageSize);
+//
+//        List<User> allItems = UserMapper.selectByEntity(user);        //全部商品
+//        int countNums = UserMapper.count();            //总记录数
+//        PageBean<User> pageData = new PageBean(currentPage, pageSize, countNums);
+//        pageData.setItems(allItems);
+//        return pageData.getItems();
+//    }
+
+    public TableSplitResult<List<User>> selectByEntity(int currentPage, int pageSize, User user) {
 
         //设置分页信息，分别是当前页数和每页显示的总记录数【记住：必须在mapper接口中的方法执行之前设置该分页信息】
         PageHelper.startPage(currentPage, pageSize);
 
         List<User> allItems = UserMapper.selectByEntity(user);        //全部商品
         int countNums = UserMapper.count();            //总记录数
-        PageBean<User> pageData = new PageBean(currentPage, pageSize, countNums);
-        pageData.setItems(allItems);
-        return pageData.getItems();
-
-
-//        return UserMapper.selectByEntity();
+        TableSplitResult<List<User>> pageInfo = new TableSplitResult<List<User>>(currentPage,countNums,allItems);
+        return pageInfo;
     }
 
     public List<User> selectByEntity(User user) {

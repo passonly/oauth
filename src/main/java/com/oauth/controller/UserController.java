@@ -1,11 +1,14 @@
 package com.oauth.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.oauth.entity.TableSplitResult;
 import com.oauth.entity.User;
 import com.oauth.service.UserService;
 import com.oauth.utils.WXUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -84,11 +87,15 @@ public class UserController {
      *
      * @return
      */
+    @ResponseBody
     @RequestMapping("/getList")
-    public List<User> getList(int currentPage, int pageSize, User user) {
+    public TableSplitResult<List<User>> getList(int pageNumber, int pageSize, User user) {
+//    public List<User> getList(HttpServletRequest request, HttpServletResponse response,User user) {
+//        int pageNumber =Integer.parseInt( request.getParameter("pageNumber"));
+//        int pageSize =Integer.parseInt( request.getParameter("pageSize"));
 //        user.setUserName("ddd");
 //        user.setUserOpenid("2");
-        List<User> users = userService.selectByEntity(currentPage, pageSize, user);
+        TableSplitResult<List<User>> users = userService.selectByEntity(pageNumber, pageSize, user);
         return users;
     }
 

@@ -71,9 +71,9 @@
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="orderSecret" class="col-sm-3 control-label">订单密码：</label>
+			    <label for="orderSercet" class="col-sm-3 control-label">订单密码：</label>
 			    <div class="col-sm-5">
-			      <input type="password" class="form-control" name="orderSecret" id="orderSecret" placeholder="请输入订单密码">
+			      <input type="password" class="form-control" name="orderSercet" id="orderSercet" placeholder="请输入订单密码">
 			    </div>
 			  </div>
 			 
@@ -103,9 +103,9 @@
 			data: params,
             dataType : "json",
            success: function (result) {
-                console.log(result);//打印服务端返回的数据(调试用)
-                if (result.resultCode == 200) {
-                    alert("订单校验成功！");
+                if (result.errCode == 0) {
+                    window.location.href="/success.html";
+                    // alert("订单校验成功！");
                 }else {
                     alert("订单校验失败！");
 				};

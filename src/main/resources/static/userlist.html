@@ -157,16 +157,44 @@
     if(c_start == -1){
         window.location.href = "/user/masterLogin"
     }
+
+    // //得到查询的参数
+    // function queryParams (params) {
+    //     var temp = {  //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+    //         pageNumber: params.pageNumber, //页码
+    //         pageSize: params.pageSize,  //页面大小
+    //         username: $("#userName").val(),//后台请求传的查询参数
+    //         userNickName:$("#userNickName").val(),
+    //         userOpenid:$("#userOpenid").val(),
+    //         userPhone:$("#userPhone").val(),
+    //     };
+    //     return temp;
+    // };
     var myTab = $('#mytab');
     myTab.bootstrapTable({
-                             url: '/user/getList?currentPage=1&pageSize=1000',
-                             queryParams: $("#conditionForm").serializeObject(),
+                             url: '/user/getList',
+                             method:"get",
+                             // queryParams: $("#conditionForm").serializeObject(),
+                             queryParams: function queryParams(params) {
+                                 var temp = {  //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                                     pageNumber: params.pageNumber, //页码
+                                     pageSize: params.pageSize,  //页面大小
+                                     username: $("#userName").val(),//后台请求传的查询参数
+                                     userNickName:$("#userNickName").val(),
+                                     userOpenid:$("#userOpenid").val(),
+                                     userPhone:$("#userPhone").val(),
+                                 };
+                                 return temp;
+                             },
                              toolbar: "#toolbar",
-                             sidePagination: "true",
+                             sidePagination: "server",
+                             queryParamsType:'',
                              striped: true, // 是否显示行间隔色
                              //search : "true",
                              uniqueId: "ID",
-                             pageSize: "10",
+                             pageNumber:1,
+                             pageSize: 10,
+                             pageList: [10 , 20, 50, 100],
                              pagination: true, // 是否分页
                              sortable: true, // 是否启用排序
                              columns: [{
@@ -210,11 +238,33 @@
         return result;
     }
 
-    function sendMessage(userOpenid) {
-        var open = window.open("http://www.huishanghe.xyz/sendMessage/sendTemplateMessage/"
-                               + userOpenid);
-        alert(open)
+    function sendMessage(openid) {
+        // var open = window.open("http://www.huishanghe.xyz/sendMessage/sendTemplateMessage/"
+        //                        + userOpenid);
+        // alert(open)
+
+        alert(openid)
         // alert(userOpenid)
+        var url = "/sendMessage/sendTemplateMessage?openid="+openid;
+        var options = {
+            url : url,
+            type : 'get',
+            data: openid,
+            dataType : "json",
+            success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+                if (result.errCode == 0) {
+                    // window.location.href="/success.html";
+                    alert("公众号消息发送成功！");
+                }else {
+                    alert("公众号消息发送失败！");
+                };
+            },
+            error : function() {
+                alert("异常！");
+            }
+        };
+        $.ajax(options);
     }
 
     $('#searchOrder').on('click', function (e) {

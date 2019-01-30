@@ -12,6 +12,8 @@ import com.oauth.utils.HttpClientUtil;
 import com.oauth.utils.HttpUtil;
 
 import com.oauth.utils.WXUtil;
+import com.oauth.vo.R;
+
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -37,10 +40,10 @@ public class MessageController {
     private UserService userService;
 
     @RequestMapping("/sendTemplateMessage")
-    public void sendTemplateMessage(HttpServletRequest request,HttpServletResponse response,String openid) throws Exception {
+    public R sendTemplateMessage(HttpServletRequest request, HttpServletResponse response, String openid) throws Exception {
 
 
-        String access_token = WXUtil.getAccessToken(request,response);
+        String access_token = WXUtil.getAccessToken(request, response);
         // 获取网页授权access_token
 //        String access_token = "17_xykZ-o18LKmHkAzhXeMheJ5hr448u16eX0VuRaiSLSCLRgWafmRmqoI8GouY_N7iSeDa7QqtqYvHGOQPpV0jbmjLsG8xfrGfCKe-ogD5N--4WUYSeT9KkWL5AkqrWUzmra-8VPP8n8UkniesLGXaAHACXO";
         // 设置要传递的参数messageTemplate
@@ -48,7 +51,7 @@ public class MessageController {
 //        messageTemplate.setTouser("olyFc1CdGLBWWkhkfZoevCnWM1Hc");
         messageTemplate.setTouser(openid);
         messageTemplate.setTemplate_id(Constants.TEMPLATEID);
-        messageTemplate.setUrl("http://"+Constants.URL+"/check.html");
+        messageTemplate.setUrl("http://" + Constants.URL + "/check.html");
         MessageData messageData = new MessageData();
         MessageFont first = new MessageFont();
         first.setValue("汇尚合会员卡号填写");
@@ -70,10 +73,16 @@ public class MessageController {
         messageTemplate.setData(messageData);
         JSONObject jsonObject = JSONObject.fromObject(messageTemplate);
         //参数url
-        System.out.println(jsonObject);
-        String url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token="+access_token;
+
+        String url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" + access_token;
         String jsonTW = HttpClientUtil.httpPostWithJSON(url, jsonObject.toString());
-        System.out.println(jsonTW);
+        JSONObject jsonObject1 = JSONObject.fromObject(jsonTW);
+        Object errcode = jsonObject1.get("errcode");
+        if (errcode != null && "0".equals(errcode.toString())) {
+            return R.ok();
+        } else {
+            return R.error("发送公众号通知信息失败！");
+        }
     }
 
 
