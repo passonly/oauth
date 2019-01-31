@@ -91,7 +91,6 @@ public class OrderInfoController {
                 e.printStackTrace();
             }
         }
-        orderInfo = orderInfos.get(0);
         orderInfo.setOrderCanSend("1");
         orderInfo.setUserOpenid(userOpenid);
         orderInfo.setUpdateTime(new Date());

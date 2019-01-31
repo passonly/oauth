@@ -77,7 +77,7 @@
     </div>
 </div>
 <h2 style="margin-top:00px;text-align:center">订单查询</h2>
-<main style="margin-top:120px">
+<main style="margin-top:80px">
     <div class='container'>
         <form id="conditionForm" class="form-horizontal row">
             <div class="form-group">
@@ -154,60 +154,71 @@
     }
     var myTab = $('#mytab');
     myTab.bootstrapTable({
-                             url: '/order/getList',
-                             // queryParams: $("#conditionForm").serializeObject(),
-                             queryParams: function queryParams(params) {
-                                 var temp = {  //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-                                     pageNumber: params.pageNumber, //页码
-                                     pageSize: params.pageSize,  //页面大小
-                                     orderNumber: $("#orderNumber").val(),//后台请求传的查询参数
-                                     userPhone: $("#userPhone").val(),
-                                     userName: $("#userName").val(),
-                                     userOpenid: $("#userOpenid").val(),
-                                 };
-                                 return temp;
-                             },
-                             toolbar: "#toolbar",
-                             sidePagination: "server",
-                             queryParamsType: '',
-                             striped: true, // 是否显示行间隔色
-                             //search : "true",
-                             uniqueId: "ID",
-                             pageNumber: 1,
-                             pageSize: 10,
-                             pageList: [10, 20, 50, 100],
-                             pagination: true, // 是否分页
-                             sortable: true, // 是否启用排序
-                             columns: [{
-                                 field: 'orderNumber',
-                                 title: '订单号码'
-                             }, {
-                                 field: 'userOpenid',
-                                 title: 'openid'
-                             }, {
-                                 field: 'userName',
-                                 title: '用户姓名'
-                             }, {
-                                 field: 'userPhone',
-                                 title: '手机号码'
-                             }, {
-                                 field: 'orderCanSend',
-                                 title: '状态',
-                                 formatter: function (value, row, index) {
-                                     return changeStr(value)
-                                 }
-                             }, {
-                                 field: 'createTime',
-                                 title: '创建时间',
-                                 formatter: function (value, row, index) {
-                                     return changeDateFormat(value)
-                                 }
-                             },{
-                                 field: 'updateTime',
-                                 title: '修改时间',
+        url: '/order/getList',
+        // queryParams: $("#conditionForm").serializeObject(),
+        queryParams: function queryParams(params) {
+            var temp = {  //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
+                pageNumber: params.pageNumber, //页码
+                pageSize: params.pageSize,  //页面大小
+                orderNumber: $("#orderNumber").val(),//后台请求传的查询参数
+                userPhone: $("#userPhone").val(),
+                userName: $("#userName").val(),
+                userOpenid: $("#userOpenid").val(),
+            };
+            return temp;
+        },
+        toolbar: "#toolbar",
+        sidePagination: "server",
+        queryParamsType: '',
+        striped: true, // 是否显示行间隔色
+        //search : "true",
+        uniqueId: "ID",
+        pageNumber: 1,
+        pageSize: 10,
+        pageList: [10, 20, 50, 100],
+        pagination: true, // 是否分页
+        sortable: true, // 是否启用排序
+        columns: [{
+            field: 'orderNumber',
+            title: '订单号码'
+        }, {
+            field: 'userOpenid',
+            title: 'openid'
+        }, {
+            field: 'userName',
+            title: '用户姓名'
+        },
+            //     {
+            //     field: 'userPhone',
+            //     title: '手机号码'
+            // },
+            {
+                field: 'orderCanSend',
+                title: '状态',
+                formatter: function (value, row, index) {
+                    return changeStr(value)
+                }
+            }, {
+                field: 'orderPerson',
+                title: '收货人'
+            }, {
+                field: 'orderPersonPhone',
+                title: '收货人电话'
+            }, {
+                field: 'orderPersonAddress',
+                title: '收货人地址'
+            }, {
+                field: 'remark',
+                title: '备注'
+            }
+            // ,{
+            //     field: 'updateTime',
+            //     title: '修改时间',
+            //
+            // }
+        ]
+    });
 
-                             }]
-                         });
     //修改——转换日期格式(时间戳转换为datetime格式)
     function changeStr(cellval) {
         if (cellval == 1) {
@@ -216,12 +227,13 @@
             return "未验证";
         }
     }
+
     //修改——转换日期格式(时间戳转换为datetime格式)
     function changeDateFormat(cellval) {
         if (cellval != null) {
             var dateStr = cellval.substring(0, 4) + "-" + cellval.substring(4, 6) + "-"
-                          + cellval.substring(6, 8) + " " + cellval.substring(8, 10) + ":"
-                          + cellval.substring(10, 12) + ":" + cellval.substring(12, 14)
+                + cellval.substring(6, 8) + " " + cellval.substring(8, 10) + ":"
+                + cellval.substring(10, 12) + ":" + cellval.substring(12, 14)
             return dateStr;
         }
     }

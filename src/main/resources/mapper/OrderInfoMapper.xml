@@ -21,6 +21,9 @@
             <if test=" userName !=null and userName !='' ">AND u.user_name =#{ userName}</if>
             <if test=" userPhone !=null and userPhone !='' ">AND u.user_phone =#{ userPhone}</if>
             <if test=" userOpenid !=null and userOpenid !='' ">AND o.user_openid =#{ userOpenid}</if>
+            <if test=" orderPerson !=null and orderPerson !='' ">AND o.orderPerson =#{ orderPerson}</if>
+            <if test=" orderPersonPhone !=null and orderPersonPhone !='' ">AND o.orderPersonPhone =#{ orderPersonPhone}</if>
+            <if test=" remark !=null and remark !='' ">AND o.remark =#{ remark}</if>
         </where>
         order by o.update_time desc
     </select>
@@ -92,6 +95,18 @@
             <if test="updatePerson != null" >
                 update_person,
             </if>
+            <if test="orderPerson != null" >
+                orderPerson,
+            </if>
+            <if test="orderPersonPhone != null" >
+                orderPersonPhone,
+            </if>
+            <if test="remark != null" >
+                remark,
+            </if>
+            <if test="orderPersonAddress != null" >
+                orderPersonAddress,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="orderId != null" >
@@ -130,6 +145,18 @@
             <if test="updatePerson != null" >
                 #{updatePerson,jdbcType=VARCHAR},
             </if>
+            <if test="orderPerson != null" >
+                #{orderPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="orderPersonPhone != null" >
+                #{orderPersonPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null" >
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="orderPersonAddress != null" >
+                #{orderPersonAddress,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
 
@@ -157,7 +184,11 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
         create_person = #{createPerson,jdbcType=VARCHAR},
         update_time = #{updateTime,jdbcType=VARCHAR},
-        update_person = #{updatePerson,jdbcType=VARCHAR}
+        update_person = #{updatePerson,jdbcType=VARCHAR},
+        orderPerson = #{orderPerson,jdbcType=VARCHAR},
+        orderPersonPhone = #{orderPersonPhone,jdbcType=VARCHAR},
+        orderPersonAddress = #{orderPersonAddress,jdbcType=VARCHAR},
+        remark = #{remark,jdbcType=VARCHAR}
         where order_number = #{orderNumber,jdbcType=INTEGER} limit 1
     </update>
     <!--<select id="get" resultType="com.oauth.entity.OrderInfo">-->

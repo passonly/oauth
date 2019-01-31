@@ -31,6 +31,10 @@ public class OrderInfo {
     private String updatePerson;
     private String userName;
     private String userPhone;
+    private String orderPerson;
+    private String orderPersonPhone;
+    private String orderPersonAddress;
+    private String remark;
 
     public String getOrderId() {
         return orderId;
@@ -142,5 +146,37 @@ public class OrderInfo {
 
     public void setUserOpenid(String userOpenid) {
         this.userOpenid = userOpenid;
+    }
+
+    public String getOrderPerson() {
+        return orderPerson;
+    }
+
+    public void setOrderPerson(String orderPerson) {
+        this.orderPerson = orderPerson;
+    }
+
+    public String getOrderPersonPhone() {
+        return orderPersonPhone;
+    }
+
+    public void setOrderPersonPhone(String orderPersonPhone) {
+        this.orderPersonPhone = orderPersonPhone;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public String getOrderPersonAddress() {
+        return orderPersonAddress;
+    }
+
+    public void setOrderPersonAddress(String orderPersonAddress) {
+        this.orderPersonAddress = orderPersonAddress;
     }
 }
