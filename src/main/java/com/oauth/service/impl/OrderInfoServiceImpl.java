@@ -35,6 +35,12 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         return listTableSplitResult;
     }
 
+    public List<OrderInfo> selectByOrderNumber(OrderInfo orderInfo) {
+        List<OrderInfo> allItems = orderInfoMapper.selectByOrderNumber(orderInfo);        //全部商品
+        return allItems;
+    }
+
+
     public void insert(OrderInfo orderInfo) {
         orderInfoMapper.insert(orderInfo);
     }

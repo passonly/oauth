@@ -80,7 +80,9 @@
             <if test="userCountry != null" >
                 user_country,
             </if>
-
+            <if test="userProvince != null" >
+                user_province,
+            </if>
             <if test="userCity != null" >
                 user_city,
             </if>
@@ -110,7 +112,6 @@
             </if>
         </trim>
 
-
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="userId != null" >
                 #{userId,jdbcType=INTEGER},
@@ -130,13 +131,10 @@
             <if test="userSex != null" >
                 #{userSex,jdbcType=INTEGER},
             </if>
-            <if test="userPhone != null" >
-                #{userPhone,jdbcType=TIMESTAMP},
-            </if>
-            <if test="userPhone != null" >
-                #{userPhone,jdbcType=TIMESTAMP},
-            </if>
 
+            <if test="userCountry != null" >
+                #{userCountry,jdbcType=TIMESTAMP},
+            </if>
             <if test="userProvince != null" >
                 #{userProvince,jdbcType=VARCHAR},
             </if>
@@ -148,6 +146,9 @@
             </if>
             <if test="userRole != null" >
                 #{userRole,jdbcType=INTEGER},
+            </if>
+            <if test="userPhone != null" >
+                #{userPhone,jdbcType=TIMESTAMP},
             </if>
             <if test="userStatus != null" >
                 #{userStatus,jdbcType=TIMESTAMP},

@@ -17,6 +17,7 @@ import com.oauth.vo.R;
 import net.sf.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +28,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -61,7 +63,8 @@ public class MessageController {
         keyword1.setValue(user.getUserPhone());
         keyword1.setColor("#173177");
         MessageFont keyword2 = new MessageFont();
-        keyword2.setValue(new Date().toString());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        keyword2.setValue(df.format(new Date()).toString());
         keyword2.setColor("#173177");
         MessageFont remark = new MessageFont();
         remark.setValue("请您点击详情填写会员卡信息");

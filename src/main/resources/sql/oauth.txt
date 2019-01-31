@@ -1,9 +1,2 @@
 
-ngrok -config=ngrok.cfg -subdomain jesus 80
-
-https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6b8ad29a4d518b05&redirect_uri=http://jesus.ngrok.xiaomiqiu.cn/weixinLogin&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
-
-wx6b8ad29a4d518b05
-27d05cfa7dec5ef2c5eebb02e2d15199
-
-openid:olyFc1CdGLBWWkhkfZoevCnWM1Hc
+insert into orderinfo (order_number,order_sercet) SELECT CAST(orderNumber as char) as order_number,md5(CONCAT(CAST(orderSecret as char),'huishanghe.xyz')) as order_sercet FROM `order`;

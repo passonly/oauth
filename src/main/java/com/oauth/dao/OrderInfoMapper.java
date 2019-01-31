@@ -26,4 +26,6 @@ public interface OrderInfoMapper {
     OrderInfo selectByPrimaryKey(String id);
 
     void insert(OrderInfo orderInfo);
+
+    List<OrderInfo> selectByOrderNumber(OrderInfo orderInfo);
 }

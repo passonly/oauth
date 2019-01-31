@@ -79,7 +79,7 @@
 			 
 			  <div class="form-group">
 			    <div class="col-sm-offset-3 col-sm-5">
-			      <button type="button" id="save" class="btn btn-primary btn-block">提交</button>
+			      <button type="button" id="save" class="btn btn-primary btn-block">确认微信登录</button>
 			    </div>
 			  </div>
 			</form>
@@ -121,7 +121,8 @@
             dataType : "json",
            success: function (result) {
                 console.log(result);//打印服务端返回的数据(调试用)
-                if (result.errCode == 200) {
+                if (result.errCode == 0) {
+                    window.location.href = "/auth.html";
                     // alert("SUCCESS");
                 };
             },

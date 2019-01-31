@@ -8,6 +8,7 @@ import com.oauth.service.OrderInfoService;
 import com.oauth.utils.WXUtil;
 import com.oauth.vo.R;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,8 +55,10 @@ public class OrderInfoController {
                 && !"".equals(orderInfo.getOrderNumber())
                 && orderInfo.getOrderSercet() != null
                 && !"".equals(orderInfo.getOrderSercet())) {
-            TableSplitResult<List<OrderInfo>> listTableSplitResult = orderInfoService.selectByEntity(0, 10, orderInfo);
-            orderInfos = listTableSplitResult.getRows();
+            System.out.println(DigestUtils.md5Hex(orderInfo.getOrderSercet() + Constants.MD5STR));
+            orderInfo.setOrderSercet(DigestUtils.md5Hex(orderInfo.getOrderSercet() + Constants.MD5STR));
+            orderInfos = orderInfoService.selectByOrderNumber(orderInfo);
+
         }
         if (orderInfos != null && orderInfos.size() > 1) {
             try {
@@ -76,6 +79,7 @@ public class OrderInfoController {
         orderInfo = orderInfos.get(0);
         orderInfo.setOrderCanSend("1");
         orderInfo.setUserOpenid(userOpenid);
+        orderInfo.setUpdateTime(new Date());
         orderInfoService.update(orderInfo);
         return R.ok();
     }

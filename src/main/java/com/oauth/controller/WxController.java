@@ -82,7 +82,7 @@ public class WxController {
 
     @RequestMapping("/hello")
     public String home(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("========WechatController========= ");
+        log.info("========WechatController========= ");
         Enumeration pNames = request.getParameterNames();
         while (pNames.hasMoreElements()) {
             String name = (String) pNames.nextElement();
@@ -112,6 +112,7 @@ public class WxController {
     @RequestMapping("/authorize")
     @ResponseBody
     public static void authorize(HttpServletRequest request, HttpServletResponse response) {
+        log.info("跳转到用户填写登录信息页面");
         String appid = Constants.APPID;
         //String uri ="wftest.zzff.net/wx/weixinLogin";
         String uri = urlEncodeUTF8("http://" + Constants.URL + "/login.html");
@@ -126,6 +127,7 @@ public class WxController {
         Cookie[] cookies = request.getCookies();
         //cookie为空，则去注册
         if (cookies == null) {
+            log.info("cookie为空");
             try {
                 response.sendRedirect(urlNameString);
                 return;
@@ -138,13 +140,14 @@ public class WxController {
             for (int i = 0; i < cookies.length; i++) {
                 Cookie cook = cookies[i];
                 if (cook.getName().equalsIgnoreCase("user_openid")) { //获取键
-                    System.out.println("user_openid:" + cook.getValue().toString());    //获取值
+                    log.info("user_openid:" + cook.getValue().toString());    //获取值
                     flag = true;
                 }
             }
         }
         //如果没有用户信息，则去注册，有则跳转到注册成功页面
         if (flag) {
+            log.info("cookie中有用户登录信息");
             try {
                 response.sendRedirect(url);
                 return;
@@ -204,27 +207,27 @@ public class WxController {
 
     @RequestMapping("/weixinLogin")
     @ResponseBody
-    public void weixinLogin(HttpServletRequest request, HttpServletResponse response, String code, String userPhone, String userName) throws Exception {
+    public R weixinLogin(HttpServletRequest request, HttpServletResponse response, String code, String userPhone, String userName) throws Exception {
 //        // 用户同意授权后，能获取到code
 //        Map<String, String[]> params = request.getParameterMap();//针对get获取get参数
 //        String[] codes = params.get("code");//拿到code的值
 //        String code = codes[0];//code
 
-        System.out.println("****************code:" + code);
+        log.info("****************code:" + code);
         // 用户同意授权
-        if (!"authdeny".equals(code)) {
+        if (code != null && !"".equals(code)) {
             // 获取网页授权access_token
             Oauth2Token oauth2Token = getOauth2AccessToken(Constants.APPID, Constants.APPSERECT, code);
-            System.out.println("***********************************oauth2Token信息：" + oauth2Token.toString());
+            log.info("***********************************oauth2Token信息：" + oauth2Token.toString());
             // 网页授权接口访问凭证
             String accessToken = oauth2Token.getAccessToken();
             // 用户标识
             String openId = oauth2Token.getOpenId();
             // 获取用户信息
             SNSUserInfo snsUserInfo = getSNSUserInfo(accessToken, openId);
-            System.out.println("openid:" + openId);
-            System.out.println("accessToken:" + accessToken);
-            System.out.println("***********************************用户信息unionId：" + snsUserInfo.getUnionid() + "***:" + snsUserInfo.getNickname());
+            log.info("openid:" + openId);
+            log.info("accessToken:" + accessToken);
+            log.info("***********************************用户信息unionId：" + snsUserInfo.getUnionid() + "***:" + snsUserInfo.getNickname());
 
             //根据openid查询用户
             User user = null;
@@ -245,16 +248,19 @@ public class WxController {
                 user.setUserPhone(userPhone);
                 user.setUserSex(snsUserInfo.getSex() + "");
                 user.setUserStatus("0");
-
+                user.setCreateTime(new Date());
+                user.setCreatePerson(openId);
+                user.setUpdateTime(new Date());
+                user.setUpdatePerson(openId);
                 userService.insert(user);
+                log.info("用户信息保存到数据库成功");
             }
             //保存用户信息openid到cookie
             Cookie cookie = new Cookie("user_openid", openId);
             response.addCookie(cookie);
-
-            String url = "http://" + Constants.URL + "/auth.html";
-            response.sendRedirect(url);
+            log.info("cookie保存成功");
         }
+        return R.ok();
     }
 
     /**

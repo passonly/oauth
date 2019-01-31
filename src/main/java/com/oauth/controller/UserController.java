@@ -1,11 +1,13 @@
 package com.oauth.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.oauth.constant.Constants;
 import com.oauth.entity.TableSplitResult;
 import com.oauth.entity.User;
 import com.oauth.service.UserService;
 import com.oauth.utils.WXUtil;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,6 +47,7 @@ public class UserController {
                     && !"".equals(user.getUserPhone())
                     && user.getUserPassword() != null
                     && !"".equals(user.getUserPassword())) {
+                user.setUserPassword(DigestUtils.md5Hex(user.getUserPassword() + Constants.MD5STR));
                 users = userService.selectByEntity(user);
             }
             if (users != null && users.size() != 0) {
@@ -54,7 +57,7 @@ public class UserController {
                 response.addCookie(cookie);
                 response.sendRedirect("/orderlist.html");
             } else {
-                response.sendRedirect("/masterLogin.html");
+                response.sendRedirect("/masterlogin.html");
             }
         } catch (IOException e) {
             e.printStackTrace();

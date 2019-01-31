@@ -193,15 +193,29 @@
                              }, {
                                  field: 'orderCanSend',
                                  title: '状态',
+                                 formatter: function (value, row, index) {
+                                     return changeStr(value)
+                                 }
                              }, {
                                  field: 'createTime',
                                  title: '创建时间',
                                  formatter: function (value, row, index) {
                                      return changeDateFormat(value)
                                  }
+                             },{
+                                 field: 'updateTime',
+                                 title: '修改时间',
+
                              }]
                          });
-
+    //修改——转换日期格式(时间戳转换为datetime格式)
+    function changeStr(cellval) {
+        if (cellval == 1) {
+            return "已验证";
+        } else {
+            return "未验证";
+        }
+    }
     //修改——转换日期格式(时间戳转换为datetime格式)
     function changeDateFormat(cellval) {
         if (cellval != null) {

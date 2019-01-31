@@ -14,6 +14,8 @@ public interface OrderInfoService {
 
     TableSplitResult<List<OrderInfo>> selectByEntity(int currentPage, int pageSize, OrderInfo orderInfo);
 
+    List<OrderInfo> selectByOrderNumber(OrderInfo orderInfo);
+
     void insert(OrderInfo orderInfo);
 
     void update(OrderInfo orderInfo);

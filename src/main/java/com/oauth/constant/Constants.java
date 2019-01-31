@@ -12,7 +12,8 @@ public class Constants {
     public static final String TEMPLATEID = "Wu550N9kIrl6K_OLrd4NUiGRZzgFxeoSBBYeKmIyQIs";
 
 //    public static final String URL = "jesus.ngrok.xiaomiqiu.cn";
-    public static final String URL = "www.huishanghe.xyz";
+    public static final String URL = "huishanghe.xyz";
+    public static final String MD5STR = "huishanghe.xyz";
 //    public static final String URL = "jesus.free.idcfengye.com";
 
 }
