@@ -9,6 +9,8 @@ import com.oauth.utils.WXUtil;
 import com.oauth.vo.R;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -30,8 +33,25 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/order")
 public class OrderInfoController {
 
+    private static Logger log = LoggerFactory.getLogger(OrderInfoController.class);
+
     @Autowired
     private OrderInfoService orderInfoService;
+
+    /**
+     *
+     * @return
+     */
+    @RequestMapping("/check")
+    public void checkOrder(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            Cookie[] cookies = request.getCookies();
+//            log.info(cookies.toString());
+            request.getRequestDispatcher("/check.html").forward(request,response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      *
@@ -41,13 +61,10 @@ public class OrderInfoController {
     public R checkOrder(HttpServletRequest request, HttpServletResponse response, OrderInfo orderInfo) {
 
         String userOpenid = WXUtil.getCookie(request, response, "user_openid");
-        if (userOpenid == null || "".equals(userOpenid)){
-            try {
-                response.sendRedirect("/authorize");
-                return R.error("请进行微信登录验证");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+        log.info("user_openid:" + userOpenid);
+        if (userOpenid == null || "".equals(userOpenid)) {
+            return R.error(40010, "请进行微信登录验证");
         }
 
         List<OrderInfo> orderInfos = null;
@@ -62,16 +79,14 @@ public class OrderInfoController {
         }
         if (orderInfos != null && orderInfos.size() > 1) {
             try {
-//                throw new Exception("订单号不唯一");
-                return R.error("订单号不唯一");
+                return R.error(40011,"订单号不唯一");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         if (orderInfos == null || orderInfos.size() == 0) {
             try {
-                return R.error("订单号不存在");
-//                throw new Exception("订单号不存在");
+                return R.error(40012,"订单号不存在");
             } catch (Exception e) {
                 e.printStackTrace();
             }

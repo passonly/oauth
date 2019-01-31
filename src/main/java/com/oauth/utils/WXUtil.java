@@ -28,12 +28,13 @@ public class WXUtil {
 
         //如果cookie中没有，则重新获取access_token，并存入cookie
 //        if (accessToken == null || "".equals(accessToken)) {
-//            accessToken = WXUtil.getAccessTokenfromHttp();
-//            Cookie cookie = new Cookie("access_token", accessToken);
-//            cookie.setMaxAge(7200);
-//            response.addCookie(cookie);
+            String accessToken = WXUtil.getAccessTokenfromHttp();
+            Cookie cookie = new Cookie("access_token", accessToken);
+            cookie.setMaxAge(7200);
+            cookie.setPath("/");
+            response.addCookie(cookie);
 //        }
-        return WXUtil.getAccessTokenfromHttp();
+        return accessToken;
     }
 
     public static String getAccessTokenfromHttp() throws Exception {

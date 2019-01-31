@@ -111,14 +111,10 @@ public class WxController {
      */
     @RequestMapping("/authorize")
     @ResponseBody
-    public static void authorize(HttpServletRequest request, HttpServletResponse response) {
+    public void authorize(HttpServletRequest request, HttpServletResponse response) {
         log.info("跳转到用户填写登录信息页面");
         String appid = Constants.APPID;
-        //String uri ="wftest.zzff.net/wx/weixinLogin";
         String uri = urlEncodeUTF8("http://" + Constants.URL + "/login.html");
-//        String result = "";
-//        BufferedReader in = null;
-//        try {
         //如果cookie中有用户数据，直接跳转到注册成功页面
         String url = "http://" + Constants.URL + "/auth.html";
         String urlNameString = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + appid + "&redirect_uri=" + uri + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
@@ -155,46 +151,7 @@ public class WxController {
                 e.printStackTrace();
             }
         }
-//        String urlNameString = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+uri+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-//            URL realUrl = new URL(urlNameString);
-//            // 打开和URL之间的连接
-//            URLConnection connection = realUrl.openConnection();
-//            // 设置通用的请求属性
-//            connection.setRequestProperty("accept", "*/*");
-//            connection.setRequestProperty("connection", "Keep-Alive");
-//            connection.setRequestProperty("user-agent",
-//                    "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
-//            // 建立实际的连接
-//            connection.connect();
 
-//            // 获取所有响应头字段
-//            Map<String, List<String>> map = connection.getHeaderFields();
-//            // 遍历所有的响应头字段
-//            for (String key : map.keySet()) {
-//                System.out.println(key + "--->" + map.get(key));
-//            }
-//            // 定义 BufferedReader输入流来读取URL的响应
-//            in = new BufferedReader(new InputStreamReader(
-//                    connection.getInputStream()));
-//            String line =null;
-//            while ((line = in.readLine()) != null) {
-//                result += line;
-//            }
-//        } catch (Exception e) {
-//            System.out.println("发送GET请求出现异常！" + e);
-//            e.printStackTrace();
-//        }
-//        // 使用finally块来关闭输入流
-//        finally {
-//            try {
-//                if (in != null) {
-//                    in.close();
-//                }
-//            } catch (Exception e2) {
-//                e2.printStackTrace();
-//            }
-//        }
-//        return  R.ok(result);
         try {
             response.sendRedirect(urlNameString);
             return;
@@ -208,10 +165,6 @@ public class WxController {
     @RequestMapping("/weixinLogin")
     @ResponseBody
     public R weixinLogin(HttpServletRequest request, HttpServletResponse response, String code, String userPhone, String userName) throws Exception {
-//        // 用户同意授权后，能获取到code
-//        Map<String, String[]> params = request.getParameterMap();//针对get获取get参数
-//        String[] codes = params.get("code");//拿到code的值
-//        String code = codes[0];//code
 
         log.info("****************code:" + code);
         // 用户同意授权
@@ -257,6 +210,7 @@ public class WxController {
             }
             //保存用户信息openid到cookie
             Cookie cookie = new Cookie("user_openid", openId);
+            cookie.setPath("/");
             response.addCookie(cookie);
             log.info("cookie保存成功");
         }

@@ -1,125 +1,141 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>订单验证</title>
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>订单验证</title>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
 
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<style>
-		.form-group{
-			margin-bottom:30px;
-		}
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-group {
+            margin-bottom: 30px;
+        }
 
-		main{
-			margin-top:150px;
-		}
-		.page{
-			height:34px;
-			text-align: center;
-			margin:30px 0;
-		}
-		nav{
-			display: inline-block;
-		}
-		.pagination{
-			float:left;
-			margin:0;
-		}
-		.pagination li.elip a{
-			background:none;
-			border:none;
-			cursor:default;
-			outline: none;
-		}
-		.goto{
-			margin-left:20px;
-			float:left;
-			vertical-align: middle;
-			color:#999;
-			display: inline-block;
-		}
-		.goto input{
-			width:34px;
-			height:34px;
-			padding:0 3px;
-			border: 1px solid #ccc;
-		}
-		.goto .btn{
-			margin-left:20px;
-		}
-		@media (max-width:768px){
-			.page{
-				display: none;
-			}
-		}
-	</style>
+        main {
+            margin-top: 150px;
+        }
+
+        .page {
+            height: 34px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        nav {
+            display: inline-block;
+        }
+
+        .pagination {
+            float: left;
+            margin: 0;
+        }
+
+        .pagination li.elip a {
+            background: none;
+            border: none;
+            cursor: default;
+            outline: none;
+        }
+
+        .goto {
+            margin-left: 20px;
+            float: left;
+            vertical-align: middle;
+            color: #999;
+            display: inline-block;
+        }
+
+        .goto input {
+            width: 34px;
+            height: 34px;
+            padding: 0 3px;
+            border: 1px solid #ccc;
+        }
+
+        .goto .btn {
+            margin-left: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .page {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
 
 
-	<main>
-		<div class='container'>
-			<form class="form-horizontal" id="logininfo">
-			  <div class="form-group">
-			    <label for="orderNumber" class="col-sm-3 control-label">订单号：</label>
-			    <div class="col-sm-5">
-			      <input type="email" class="form-control" name="orderNumber" id="orderNumber" placeholder="请输入您的订单号">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="orderSercet" class="col-sm-3 control-label">订单密码：</label>
-			    <div class="col-sm-5">
-			      <input type="password" class="form-control" name="orderSercet" id="orderSercet" placeholder="请输入订单密码">
-			    </div>
-			  </div>
-			 
-			  <div class="form-group">
-			    <div class="col-sm-offset-3 col-sm-5">
-			      <button type="button" id="save" class="btn btn-primary btn-block">订单提交</button>
-			    </div>
-			  </div>
-			</form>
-		</div>	
-	</main>
+<main>
+    <div class='container'>
+        <form class="form-horizontal" id="logininfo">
+            <div class="form-group">
+                <label for="orderNumber" class="col-sm-3 control-label">订单号：</label>
+                <div class="col-sm-5">
+                    <input type="email" class="form-control" name="orderNumber" id="orderNumber"
+                           placeholder="请输入您的订单号">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="orderSercet" class="col-sm-3 control-label">订单密码：</label>
+                <div class="col-sm-5">
+                    <input type="password" class="form-control" name="orderSercet" id="orderSercet"
+                           placeholder="请输入订单密码">
+                </div>
+            </div>
 
-	<script src="js/jquery-1.11.3.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/my.js"></script>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-5">
+                    <button type="button" id="save" class="btn btn-primary btn-block">订单提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/my.js"></script>
 
 
 </body>
 
 <script>
     $('#save').on('click', function () {
+
         var params = $('#logininfo').serializeObject();
         var url = "/order/checkOrder";
         var options = {
-            url : url,
-            type : 'post',
-			data: params,
-            dataType : "json",
-           success: function (result) {
+            url: url,
+            type: 'post',
+            data: params,
+            dataType: "json",
+            success: function (result) {
                 if (result.errCode == 0) {
-                    window.location.href="/success.html";
-                    // alert("订单校验成功！");
+                    window.location.href = "/success.html";
+                } else if (result.errCode == 40010) {
+                    window.location.href = "/authorize";
+                }  else if (result.errCode == 40012) {
+                    alert("订单号不唯一！");
+                }else if (result.errCode == 40011) {
+                    alert("订单号不存在！");
                 }else {
                     alert("订单校验失败！");
-				};
+                }
             },
-            error : function() {
+            error: function () {
                 alert("异常！");
             }
         };
         $.ajax(options);
 
-       /* $("#btn").click(function(){
+        /* $("#btn").click(function(){
 
-            // $("#myForm").ajaxSubmit(options);
-        });*/
+             // $("#myForm").ajaxSubmit(options);
+         });*/
     });
 
 </script>

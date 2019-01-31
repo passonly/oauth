@@ -148,28 +148,11 @@
 <script src="js/bootstrap-table-zh-CN.js"></script>
 <script src="js/my.js"></script>
 <script>
-    // $(document).ready(function(){
-    //     $(".table").on("click","tr",function(){
-    //        window.open("http://www.baidu.com");
-    // 	});
-    // });
     c_start=document.cookie.indexOf("user_openid=");
     if(c_start == -1){
         window.location.href = "/user/masterLogin"
     }
 
-    // //得到查询的参数
-    // function queryParams (params) {
-    //     var temp = {  //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
-    //         pageNumber: params.pageNumber, //页码
-    //         pageSize: params.pageSize,  //页面大小
-    //         username: $("#userName").val(),//后台请求传的查询参数
-    //         userNickName:$("#userNickName").val(),
-    //         userOpenid:$("#userOpenid").val(),
-    //         userPhone:$("#userPhone").val(),
-    //     };
-    //     return temp;
-    // };
     var myTab = $('#mytab');
     myTab.bootstrapTable({
                              url: '/user/getList',
@@ -243,7 +226,7 @@
         //                        + userOpenid);
         // alert(open)
 
-        alert(openid)
+        // alert(openid)
         // alert(userOpenid)
         var url = "/sendMessage/sendTemplateMessage?openid="+openid;
         var options = {
