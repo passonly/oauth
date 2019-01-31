@@ -70,7 +70,7 @@ public class WxController {
         cookie.setPath("/");
         cookie.setMaxAge(0);
         response.addCookie(cookie);
-        response.sendRedirect("/masterLogin.html");
+        response.sendRedirect("/masterlogin.html");
     }
 
 
